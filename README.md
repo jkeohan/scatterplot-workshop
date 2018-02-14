@@ -142,6 +142,12 @@ function removeToolTip(){
 }
 ```
 
+#### Solution Code
+
+Here is the solution code for the project thus far:
+
+[](https://codepen.io/jkeohan/pen/paNpyN?editors=0110)
+
 #### Additional Resources
 
 Here are some additional resources on d3 tooltips:
@@ -164,4 +170,6 @@ One important feature of any visualization is the ability to quicky associate th
 ## Filtering And Redrawing New Dataset
 
 
+## Additional Resources
 
+[d3noob.org](http://www.d3noob.org/2014/02/styles-in-d3js.html)
