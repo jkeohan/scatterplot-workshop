@@ -14,7 +14,7 @@ Fork and clone the starter code: [D3 - Scatterplot - ToolTip - Starter](https://
 
 Adding a tooltip will require that we do the following:
 
-- Implment the tooltip design using HTML\CSS
+- Implement the tooltip design using HTML\CSS
 - Create a **displayToolTip** function to render the tooltip
 - Extend **mouserOver** function to call the displayToolTip function
 - Extend the **mouseOut** function to remove the tooltip
@@ -25,7 +25,7 @@ The design were looking to implement is the following:
 
 ![d3-tooltip](http://res.cloudinary.com/jkeohan/image/upload/v1518555150/Screen_Shot_2018-02-13_at_3.45.45_PM_yada2o.png)
 
-Since recreating the above design would add additional time to the tutorial, the following [CodePen](https://codepen.io/pen/?editors=0100) has been provided with all the required HTML\CSS. It does however require some editing to be dynamic and show the info specific to that element. 
+Since recreating the above design would add additional time to the tutorial, the following [CodePen](https://codepen.io/pen/?editors=0100) has been provided with all the required HTML\CSS. It will however require some editing to be dynamic and show the info specific to that element. 
 
 Let's first use the below static html to get a tooltip up and running and then we will refactor to make it dynamic.  
 
@@ -37,10 +37,10 @@ Let's first use the below static html to get a tooltip up and running and then w
   <span class="key">2012:</span> <span class="value">84%</span><br/>
 </div>  
 ```  
-I
+
 #### Adding the displayToolTip function
 
-With the basic template in place we can now create the function responsible for generating the tooltip. So let's create the basic function for now, add a console.log to confirm it's receiving the circle element and the slowly add the additional elements as needed. 
+With the basic template in place we can now create the function responsible for generating the tooltip. We will create the basic function for now, add a console.log to confirm it's receiving the circle element and then slowly expand on it to include the additional elements as needed. 
  
 Here is the basic structure:
 
@@ -55,13 +55,13 @@ Let's now call the function in the **mouseOver** assigned to the circle and pass
 ```javascript
 function mouseOver(d) {
  // ....previously added code here
- displayToolTip(d3.select(this))
+ 	displayToolTip(d3.select(this))
 }
 ```
 
 Mousing over a circle now will console.log the element, so let's take a look and see the output. 
 
-![mouseover image](http://res.cloudinary.com/jkeohan/image/upload/v1518568508/Screen_Shot_2018-02-13_at_7.34.24_PM_gzqmjd.png)
+<img src="http://res.cloudinary.com/jkeohan/image/upload/v1518568508/Screen_Shot_2018-02-13_at_7.34.24_PM_gzqmjd.png" style="width:300px"/>
 
 The pieces of information we now need from the element are:
 
