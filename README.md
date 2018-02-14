@@ -146,7 +146,7 @@ function removeToolTip(){
 
 Here is the solution code for the project thus far:
 
-[](https://codepen.io/jkeohan/pen/paNpyN?editors=0110)
+[D3 - Scatterplot - v4 - ToolTip - Solution ](https://codepen.io/jkeohan/pen/paNpyN?editors=0110)
 
 #### Additional Resources
 
