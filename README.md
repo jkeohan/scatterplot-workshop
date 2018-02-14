@@ -8,9 +8,14 @@
 
 ## Adding Circle & Line Transitions
 
-## Adding A Tooltip
+## Adding A Tooltip - 30 min
 
-Fork and clone the starter code: [D3 - Scatterplot - ToolTip - Starter](https://codepen.io/jkeohan/pen/wyWjXq)
+
+The starter code for this section has been provided so please fork the following codepen: 
+
+[D3 - Scatterplot - ToolTip - Starter](https://codepen.io/jkeohan/pen/wyWjXq)
+
+Tooltips help elicit additional information about a specific data point. In the case of the scatterplot it will be used to show the percent output of the country for years 2012 & 2002.  It can however to be extended and show all the years and their corresponding values as a table or even a mini bar chart.  When approaching the design one should always consider what information would be most relevant and\or useful to the user as they investigate the data. 
 
 Adding a tooltip will require that we do the following:
 
@@ -105,21 +110,24 @@ All that's left now is to add the html and dynamically replace the following:
 - d3tooltiphr border color
 - values for both 2002 and 2012
 
- The d const variable created earlier contains the data needed we can grab those values easily   Here is the code that does just that and ends with a nice transition for opacity:
+ The **d** variable defined earlier is an object that contains the data needed to replace the static values and of course a transition has been added for aesthetics:
  
  ```
- tooltip   
-		.style("opacity",0)
-		.style('left', (cx + 160) + 'px')
-		.style("top", (cy + 30) + "px") 
+  const tooltip = d3.select(".regionalstats").append("div").attr("class","d3tooltip")
+  
+  tooltip   
+	    .style("opacity",1)
+	    .style('left', (cx + 160) + 'px')
+	    .style("top", (cy + 30) + "px") 
 	    .style("border" , "3px solid " + d.color )
-	    .html(`
-	      <span class="regionName">${d.Location}</span>
-	      <hr class="d3tooltiphr" style="border: 2px solid ${d.color}"> 
-	      <span class="key">2002:</span> <span class="value">${d["2002"]} %</span><br/>
-	      <span class="key">2012:</span> <span class="value">${d["2012"]}%</span><br/>
-	    `)
-	  .transition().duration(1000).style("opacity",1)
+	   .transition().duration(1000).style("opacity",1)
+  
+  tooltip.append('span').attr('class','regionName').html(d.Location)
+  tooltip.append('hr').attr('class','d3tooltiphr').style('border',`2px solid ${d.color}`)
+  tooltip.append('span').attr('class','key-2002').html('2002')
+  tooltip.append('span').attr('class','value').html(`${d['2002']}%`).append('br')
+  tooltip.append('span').attr('class','key-2012').html('2012')
+  tooltip.append('span').attr('class','value').html(`${d['2012']}%`)
  ```
  
 #### Removing the Tooltip
@@ -130,14 +138,30 @@ I suppose the last thing needed is to remove the tooltip on **mouseout**.  Creat
 function removeToolTip(){
    d3.selectAll(".d3tooltip")
      .transition().duration(1000)
-     .style("opacity",0).remove( )
+     	.style("opacity",0).remove( )
 }
 ```
 
+#### Additional Resources
+
+Here are some additional resources on d3 tooltips:
+
+- [d3-tip](https://github.com/Caged/d3-tip) - a resuable tooltip component
+- [blockbuilder.org - filtered by d3-tip](http://blockbuilder.org/search#d3modules%3Dd3-tip%2Cd3-legend)
+- [D3.js Step by Step: Adding Tooltips](http://zeroviscosity.com/d3-js-step-by-step/step-5-adding-tooltips)
 
 ## Adding A Legend 
 
 
+The starter code for this section has been provided so please fork the following codepen: 
 
-## Extend Legend To Filter Dataset
+[D3 - Scatterplot - Legend - Starter](https://codepen.io/jkeohan/pen/qxXRzB)
+
+One important feature of any visualization is the ability to quicky associate the data based on a common property.  Thus far we've done this in part by assigning the countries a specific color based on their region. This however has not yet been conveyed to the user as of yet so we need to add this information so the user can now build this association. 
+
+
+
+## Filtering And Redrawing New Dataset
+
+
 
