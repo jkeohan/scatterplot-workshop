@@ -23,7 +23,7 @@ Adding a tooltip will require that we do the following:
 
 The design were looking to implement is the following:
 
-<img src="http://res.cloudinary.com/jkeohan/image/upload/v1518555150/Screen_Shot_2018-02-13_at_3.45.45_PM_yada2o.png" width="400" />
+<img src="http://res.cloudinary.com/jkeohan/image/upload/v1518555150/Screen_Shot_2018-02-13_at_3.45.45_PM_yada2o.png" width="150" />
 
 Since recreating the above design would add additional time to the tutorial, the following [CodePen](https://codepen.io/pen/?editors=0100) has been provided with all the required HTML\CSS. It will however require some editing to be dynamic and show the info specific to that element. 
 
