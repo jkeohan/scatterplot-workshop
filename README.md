@@ -61,7 +61,7 @@ function mouseOver(d) {
 
 Mousing over a circle now will console.log the element, so let's take a look and see the output. 
 
-![](http://res.cloudinary.com/jkeohan/image/upload/v1518568508/Screen_Shot_2018-02-13_at_7.34.24_PM_gzqmjd.png =100)
+<img src="http://res.cloudinary.com/jkeohan/image/upload/v1518568508/Screen_Shot_2018-02-13_at_7.34.24_PM_gzqmjd.png" width="200"/>
 
 
 
