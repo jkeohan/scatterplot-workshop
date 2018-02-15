@@ -181,10 +181,3 @@ One important feature of any visualization is the ability to quicky associate th
 [d3noob.org](http://www.d3noob.org/2014/02/styles-in-d3js.html)
 
 
-why thank you. I appreciate it. I asked my squad lead for help but he was tired from the night before and pre-occupied with his new job in DC
-so he didnt really care or listen to what I was trying to do. Sent me in one direction rather than answering my question. Then after 3 hours I asked for help again and he said why are you doing things that way? So I went in another direction per his input to set up a new controller for my landing page etc. 3 more hours later it wasn't working and I asked for help again
-
-He said he had a phone call to take and to ask you or avi
-I asked Avi and he tried but said ruby is not his strong point. So he went and got Jason Seminara- who told me I did not need to set up another controller and was not doing thing via best practices etc
-After about 45 minutes with him we fixed what I was trying to do and deleted all the work I did prior. In total I wasted about 7 hours with bad input.
-I also told Jason S it was ridiculous that I am learning something in a class and there is no support for this language. I was simply trying to set up a landing page with a simple JS onclick event
