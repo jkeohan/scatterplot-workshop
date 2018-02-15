@@ -92,7 +92,8 @@ The last thing that needs to be done are in order to render the tooltip are the 
 Creating and positioning the tooltip is fairly easy and is done as follows:
 
 ```
-const tooltip = d3.select(".regionalstats").append("div").attr("class","d3tooltip")
+const tooltip = d3.select(".regionalstats")
+	.append("div").attr("class","d3tooltip")
 
 tooltip   
 	.style("opacity",0)
@@ -116,12 +117,11 @@ All that's left now is to add the html and dynamically replace the following:
   const tooltip = d3.select(".regionalstats").append("div").attr("class","d3tooltip")
   
   tooltip   
-	    .style("opacity",1)
+	    .style("opacity",0)
 	    .style('left', (cx + 160) + 'px')
 	    .style("top", (cy + 30) + "px") 
 	    .style("border" , "3px solid " + d.color )
-	   .transition().duration(1000).style("opacity",1)
-  
+	   
   tooltip.append('span').attr('class','regionName').html(d.Location)
   tooltip.append('hr').attr('class','d3tooltiphr').style('border',`2px solid ${d.color}`)
   tooltip.append('span').attr('class','key-2002').html('2002')
@@ -129,7 +129,13 @@ All that's left now is to add the html and dynamically replace the following:
   tooltip.append('span').attr('class','key-2012').html('2012')
   tooltip.append('span').attr('class','value').html(`${d['2012']}%`)
  ```
- 
+
+Of course a smooth transition is what were looking for so one more line is all we need to change it's opacity.
+
+```
+tooltip.transition().duration(1000).style("opacity",1)
+```
+
 #### Removing the Tooltip
 
 I suppose the last thing needed is to remove the tooltip on **mouseout**.  Create the following function and add it as the last line to the mouseout function.
@@ -173,3 +179,12 @@ One important feature of any visualization is the ability to quicky associate th
 ## Additional Resources
 
 [d3noob.org](http://www.d3noob.org/2014/02/styles-in-d3js.html)
+
+
+why thank you. I appreciate it. I asked my squad lead for help but he was tired from the night before and pre-occupied with his new job in DC
+so he didnt really care or listen to what I was trying to do. Sent me in one direction rather than answering my question. Then after 3 hours I asked for help again and he said why are you doing things that way? So I went in another direction per his input to set up a new controller for my landing page etc. 3 more hours later it wasn't working and I asked for help again
+
+He said he had a phone call to take and to ask you or avi
+I asked Avi and he tried but said ruby is not his strong point. So he went and got Jason Seminara- who told me I did not need to set up another controller and was not doing thing via best practices etc
+After about 45 minutes with him we fixed what I was trying to do and deleted all the work I did prior. In total I wasted about 7 hours with bad input.
+I also told Jason S it was ridiculous that I am learning something in a class and there is no support for this language. I was simply trying to set up a landing page with a simple JS onclick event
