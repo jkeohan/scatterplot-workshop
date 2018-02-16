@@ -165,15 +165,88 @@ Here are some additional resources on d3 tooltips:
 ## Adding A Legend 
 
 
-The starter code for this section has been provided so please fork the following codepen: 
+The starter code for this section has been provided below so please fork the following codepen: 
 
-[D3 - Scatterplot - Legend - Starter](https://codepen.io/jkeohan/pen/qxXRzB)
+**Starter Code:** [D3 - Scatterplot - Legend](https://codepen.io/jkeohan/pen/qxXRzB)
 
-One important feature of any visualization is the ability to quicky associate the data based on a common property.  Thus far we've done this in part by assigning the countries a specific color based on their region. This however has not yet been conveyed to the user as of yet so we need to add this information so the user can now build this association. 
+One important feature of any visualization is the ability to quicky associate the data based on a property value.  Thus far the visual has in part achieved this by assigning the countries a specific color based on their region. This relationship however has not yet been conveyed to the user and a legend is the best way to quickly establish this association. 
+
+### Extracting Region Values From Dataset
+
+Each item in the existing dataset array is an object with key\value pairs and the key that stores the values we need is called: **Region**
+
+D3 offers a set of convenience methods for manipulating data which are available in the full d3 library or in the d3-collection module.  One method in particular is [d3.set](https://github.com/d3/d3-collection/blob/master/README.md#set) which is like ES6 Sets in that it creates a new object that stores unique values.  There are some additional differences however they aren't relevant to the topic at hand. 
+
+Here is another codepan [D3 - Vertical Legend - Starter](https://codepen.io/jkeohan/pen/zRzzpb?editors=0010) that we will use for the time being to work with **set** to create our legend dataset and create a sample legend before applying it to the scatterplot.
+
+On line **##** Let's create a new function called **renderLegend** as follows that takes in our dataset and console.logs it. 
+
+```
+function renderLegend(data) {
+	console.log(data)
+}
+```
+
+Now inside of the **getData** function let's add the function to lines **19** and **13** passing it **storage**
+
+```
+renderLegend(storage);
+```
+
+The output should be as expected and something we've already seen in the previous iterations of the scatterplot however i've removed the years from 2003 - 2011 to keep it concise.
+
+```
+{2002: "0.4", 2012: "0.7", Location: "Korea", Region: "Asia"}
+```
+
+### Using d3.set
+
+Now let's use d3.set to create a new set and then filter it to remove duplicate region names as well as filter out the "World" object.   
+
+```
+ const legendValues = d3.set(data.map(d => d.Region)
+ 	.filter(function(d) {
+      return !(d == "World");
+    }))
+
+// OUTPUT
+// {$Asia: "Asia", $Europe: "Europe", $Latin America: …}
+```
+
+Although the key\value pairs are unique it's not in an array format the d3 expects.  A few additional method that we can append will be **.value()** to return an array of unique values and **.sort()** to sort them in alphabetical order.
+
+
+```
+ const legendValues = d3.set(data.map(d => d.Region)
+ 	.filter(function(d) {
+      return !(d == "World");
+    })).values().sort()
+
+// OUTPUT
+// ["Asia", "Europe", "Latin America", "Scandanavia", "Africa",...]
+```
+
+Only one last line needs to be added to the function and that is to call the **legend** function and pass it **legendValues**
+
+```
+function renderLegend(data) {
+	// ...previous code	
+	legend(legendValues)
+}
+```
 
 
 
-## Filtering And Redrawing New Dataset
+### Creating The Legend
+
+Now that we have an array of unique regional values it's time to create the legend. Were going to create another function that will generate the legend baesd on the values stored in the legendValues variable and it's first responsibility is to create and append an svg.
+
+```
+function legend(legendValues){
+	
+
+```
+
 
 
 ## Additional Resources
