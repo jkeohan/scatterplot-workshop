@@ -8,7 +8,7 @@
 
 ## Adding Circle & Line Transitions
 
-## Adding A Tooltip - 30 min
+## Adding A Tooltip (60 min)
 
 
 The starter code for this section has been provided so please fork the following codepen: 
@@ -136,6 +136,30 @@ Of course a smooth transition is what were looking for so one more line is all w
 tooltip.transition().duration(1000).style("opacity",1)
 ```
 
+<details>
+<summary>Full Solution</summary>
+
+function displayToolTip(selection){
+  d3.selectAll(".d3tooltip").remove()
+  const d = selection.datum()
+	const cx = +selection.attr("cx")
+	const cy = +selection.attr("cy")
+ // grab the svg and append a div
+  const tooltip = d3.select(".regionalstats").append("div").attr("class","d3tooltip")
+  // add a colored border...this requires that color be added as property to the elements 
+  tooltip.style("border" , "3px solid " + d.color )
+				.transition().duration(500).style("opacity",1)
+  tooltip.html(`
+    <span class="regionName">${d.Location}</span>
+    <hr class="d3tooltiphr" style="border: 2px solid ${d.color}"> 
+    <span class="key">2002:</span> <span class="value">${+d["2002"]} %</span><br/>
+    <span class="key">2012:</span> <span class="value">${+d["2012"]}%</span><br/>
+   `)
+  .style('left', (cx + 160) + 'px')
+  .style("top", (cy + 30) + "px") 
+}
+</details>
+
 #### Removing the Tooltip
 
 I suppose the last thing needed is to remove the tooltip on **mouseout**.  Create the following function and add it as the last line to the mouseout function.
@@ -162,7 +186,7 @@ Here are some additional resources on d3 tooltips:
 - [blockbuilder.org - filtered by d3-tip](http://blockbuilder.org/search#d3modules%3Dd3-tip%2Cd3-legend)
 - [D3.js Step by Step: Adding Tooltips](http://zeroviscosity.com/d3-js-step-by-step/step-5-adding-tooltips)
 
-## Adding A Legend 
+## Adding A Legend - 30min
 
 
 The starter code for this section has been provided below so please fork the following codepen: 
@@ -204,10 +228,12 @@ The output should be as expected and something we've already seen in the previou
 Now let's use d3.set to create a new set and then filter it to remove duplicate region names as well as filter out the "World" object.   
 
 ```
- const legendValues = d3.set(data.map(d => d.Region)
- 	.filter(function(d) {
-      return !(d == "World");
-    }))
+const legendValues = d3.set(
+	data.map(d => d.Region)
+ 		.filter(function(d) {
+      		return !(d == "World");
+  		})
+	)
 
 // OUTPUT
 // {$Asia: "Asia", $Europe: "Europe", $Latin America: …}
@@ -217,10 +243,12 @@ Although the key\value pairs are unique it's not in an array format the d3 expec
 
 
 ```
- const legendValues = d3.set(data.map(d => d.Region)
- 	.filter(function(d) {
-      return !(d == "World");
-    })).values().sort()
+const legendValues = d3.set(
+	data.map(d => d.Region)
+ 		.filter(function(d) {
+      		return !(d == "World");
+    	})
+	).values().sort()
 
 // OUTPUT
 // ["Asia", "Europe", "Latin America", "Scandanavia", "Africa",...]
@@ -239,15 +267,53 @@ function renderLegend(data) {
 
 ### Creating The Legend
 
-Now that we have an array of unique regional values it's time to create the legend. Were going to create another function that will generate the legend baesd on the values stored in the legendValues variable and it's first responsibility is to create and append an svg.
+Now that we have an array of unique regional values it's time to create the legend. Were going to create another function that will generate the legend baesd on the values stored in the legendValues variable and it's first responsibility is to create and append the svg and g elements.  For the sake of this much smaller demo on creating a legend were only going to add height as the html defaults of width\height for an svg are 300x150 with 150 being just a bit too small to fit our current legend.
 
 ```
 function legend(legendValues){
+	let svg = d3.select('.legend.).append('svg').attrs({height:200})
 	
+	let g = svg.append('g').attr("transform",(d,i) => {
+   		 return "translate(10,10)";
+ 	 )
 
 ```
 
+With our container elements in place it's time to do some data binding and add the rect and text elements. Were going to use additional g elements as a wrapper for both the rect and text which provides the ability to move them both together as a group instead of each one individually. Scales aren't being used either so we were going to use a multiple of the index value to position the g elements along the y axis. 
 
+```
+  // DATA BINDING
+  let legend = g.selectAll("legendItem").data(legendValues)
+  		.enter().append("g")
+  			.attr("class", "legendItem")
+  			.attr("transform", (d,i) => {
+    			return "translate(0," + i * 20 + ")";
+  			);
+```
+
+#### Appending The Rect and Text Elements
+
+Appending the rect and text elements are pretty straightforward.
+
+```
+  legend.append("rect")
+    .attrs({ x: 5, y: 5, width: 10, height: 10 })
+    .style('fill','lightBlue')
+    	
+   legend.append("text")
+    .attrs({ x: 25, y: 15 })
+    .text((d,i) =>  { return d );
+```
+
+The elements apprear to be in their proper places however the rectangles are all the same color.  So let's recreate the color scale that we've used previously to color the circles and use it to assign the same color scheme to the rectangles. 
+
+```
+const colorScale = d3.scaleOrdinal(d3.schemeCategory10); 
+
+legend.append("rect")
+    .attrs({ x: 5, y: 5, width: 10, height: 10 })
+    .style('fill',d => colorScale(d) )
+```
 
 ## Additional Resources
 
