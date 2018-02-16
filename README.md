@@ -139,6 +139,7 @@ tooltip.transition().duration(1000).style("opacity",1)
 <details>
 <summary>Full Solution</summary>
 
+```
 function displayToolTip(selection){
   d3.selectAll(".d3tooltip").remove()
   const d = selection.datum()
@@ -158,6 +159,7 @@ function displayToolTip(selection){
   .style('left', (cx + 160) + 'px')
   .style("top", (cy + 30) + "px") 
 }
+```
 </details>
 
 #### Removing the Tooltip
