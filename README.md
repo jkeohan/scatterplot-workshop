@@ -136,28 +136,32 @@ Of course a smooth transition is what were looking for so one more line is all w
 tooltip.transition().duration(1000).style("opacity",1)
 ```
 
+Here is the full solution code for the displayToolTip function: 
 <details>
 <summary>Full Solution</summary>
 
 ```
 function displayToolTip(selection){
-  d3.selectAll(".d3tooltip").remove()
   const d = selection.datum()
-	const cx = +selection.attr("cx")
-	const cy = +selection.attr("cy")
- // grab the svg and append a div
-  const tooltip = d3.select(".regionalstats").append("div").attr("class","d3tooltip")
-  // add a colored border...this requires that color be added as property to the elements 
-  tooltip.style("border" , "3px solid " + d.color )
-				.transition().duration(500).style("opacity",1)
-  tooltip.html(`
-    <span class="regionName">${d.Location}</span>
-    <hr class="d3tooltiphr" style="border: 2px solid ${d.color}"> 
-    <span class="key">2002:</span> <span class="value">${+d["2002"]} %</span><br/>
-    <span class="key">2012:</span> <span class="value">${+d["2012"]}%</span><br/>
-   `)
-  .style('left', (cx + 160) + 'px')
-  .style("top", (cy + 30) + "px") 
+  const cx = +selection.attr("cx")
+  const cy = +selection.attr("cy")
+  const tooltip = d3.select(".regionalstats")
+  	.append("div").attr("class","d3tooltip")
+  	
+  tooltip   
+    .style("opacity",0)
+    .style('left', (cx + 160) + 'px')
+    .style("top", (cy + 30) + "px") 
+    .style("border" , "3px solid " + d.color )
+ 
+  tooltip.append('span').attr('class','regionName').html(d.Location)
+  tooltip.append('hr').attr('class','d3tooltiphr').style('border',`2px solid ${d.color}`)
+  tooltip.append('span').attr('class','key-2002').html('2002')
+  tooltip.append('span').attr('class','value').html(`${d['2002']}%`).append('br')
+  tooltip.append('span').attr('class','key-2012').html('2012')
+  tooltip.append('span').attr('class','value').html(`${d['2012']}%`)
+  
+  tooltip.transition().duration(1000).style("opacity",1)
 }
 ```
 </details>
@@ -176,11 +180,11 @@ function removeToolTip(){
 
 #### Solution Code
 
-Here is the solution code for the project thus far:
+Here is the full solution code for the project thus far:
 
 [D3 - Scatterplot - v4 - ToolTip - Solution ](https://codepen.io/jkeohan/pen/paNpyN?editors=0110)
 
-#### Additional Resources
+#### Additional ToolTip Resources
 
 Here are some additional resources on d3 tooltips:
 
@@ -190,10 +194,9 @@ Here are some additional resources on d3 tooltips:
 
 ## Adding A Legend - 30min
 
+Here is the starter code for this section that we will use for the time being in order to focus on creating just the legend.  Once this has been completed we will reimplement the legend to the scatterplot.
 
-The starter code for this section has been provided below so please fork the following codepen: 
-
-**Starter Code:** [D3 - Scatterplot - Legend](https://codepen.io/jkeohan/pen/qxXRzB)
+**Starter Code:** [D3 - Vertical Legend - Starter](https://codepen.io/jkeohan/pen/zRzzpb?editors=0010)
 
 One important feature of any visualization is the ability to quicky associate the data based on a property value.  Thus far the visual has in part achieved this by assigning the countries a specific color based on their region. This relationship however has not yet been conveyed to the user and a legend is the best way to quickly establish this association. 
 
@@ -202,8 +205,6 @@ One important feature of any visualization is the ability to quicky associate th
 Each item in the existing dataset array is an object with key\value pairs and the key that stores the values we need is called: **Region**
 
 D3 offers a set of convenience methods for manipulating data which are available in the full d3 library or in the d3-collection module.  One method in particular is [d3.set](https://github.com/d3/d3-collection/blob/master/README.md#set) which is like ES6 Sets in that it creates a new object that stores unique values.  There are some additional differences however they aren't relevant to the topic at hand. 
-
-Here is another codepan [D3 - Vertical Legend - Starter](https://codepen.io/jkeohan/pen/zRzzpb?editors=0010) that we will use for the time being to work with **set** to create our legend dataset and create a sample legend before applying it to the scatterplot.
 
 On line **##** Let's create a new function called **renderLegend** as follows that takes in our dataset and console.logs it. 
 
@@ -256,7 +257,7 @@ const legendValues = d3.set(
 // ["Asia", "Europe", "Latin America", "Scandanavia", "Africa",...]
 ```
 
-Only one last line needs to be added to the function and that is to call the **legend** function and pass it **legendValues**
+Only one last line needs to be added to the function and that is to call the **legend** function and pass it **legendValues**.
 
 ```
 function renderLegend(data) {
@@ -269,7 +270,7 @@ function renderLegend(data) {
 
 ### Creating The Legend
 
-Now that we have an array of unique regional values it's time to create the legend. Were going to create another function that will generate the legend baesd on the values stored in the legendValues variable and it's first responsibility is to create and append the svg and g elements.  For the sake of this much smaller demo on creating a legend were only going to add height as the html defaults of width\height for an svg are 300x150 with 150 being just a bit too small to fit our current legend.
+Now that we have an array of unique regional values it's time to create the legend. Were going to create another function that will generate the legend based on the values stored in the legendValues variable.  It's first responsibility is to create and append the svg and g elements.  For the sake of this much smaller demo on creating a legend were only going to add height as the html defaults of width\height for an svg are 300x150 with 150 being just a bit too small to fit our current legend.
 
 ```
 function legend(legendValues){
@@ -307,7 +308,7 @@ Appending the rect and text elements are pretty straightforward.
     .text((d,i) =>  { return d );
 ```
 
-The elements apprear to be in their proper places however the rectangles are all the same color.  So let's recreate the color scale that we've used previously to color the circles and use it to assign the same color scheme to the rectangles. 
+The elements apprear to be in their proper places however the rectangles are all the same color.  Were going to reuse the previous colorScale that we applied to the circles based on region and use it to assign that same color scheme to the rectangles. 
 
 ```
 const colorScale = d3.scaleOrdinal(d3.schemeCategory10); 
@@ -316,6 +317,11 @@ legend.append("rect")
     .attrs({ x: 5, y: 5, width: 10, height: 10 })
     .style('fill',d => colorScale(d) )
 ```
+
+#### Applying The Legend To Scatterplot
+The starter code for this section has been provided below so please fork the following codepen: 
+
+**Starter Code:** [D3 - Scatterplot - Legend](https://codepen.io/jkeohan/pen/qxXRzB)
 
 ## Additional Resources
 
