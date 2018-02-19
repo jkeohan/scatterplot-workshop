@@ -194,7 +194,7 @@ Here are some additional resources on d3 tooltips:
 
 ## Adding A Legend - 30min
 
-Here is the starter code for this section that we will use for the time being in order to focus on creating just the legend.  Once this has been completed we will reimplement the legend to the scatterplot.
+Here is the starter code for this section that we will use for the time being in order to focus on creating just the legend.  Once this has been completed we will reimplement the legend in the context of the scatterplot.
 
 **Starter Code:** [D3 - Vertical Legend - Starter](https://codepen.io/jkeohan/pen/zRzzpb?editors=0010)
 
@@ -205,7 +205,7 @@ One important feature of any visualization is the ability to quicky associate th
 The first thing we need to do is grab the DOM element where we will append the svg.
 
 ```
-const chart = d3.select(".legend");
+const chart = d3.select(".chart");
 ```
 
 In order to add some responsiveness to the svg we will set it's height\width to that elements defined width\height. D3 uses the .node() method to grab that elements properties and then we can use .clientWidth & .clientHeight to obtain those respective values. 
@@ -282,88 +282,53 @@ const legendValues = d3.set(
 // legendValues => ["Asia", "Europe", "Latin America", "Scandanavia", "Africa",...]
 ```
 
-Only one last line needs to be added to the function and that is to call the **legend** function and pass it **legendValues**.
+Only one last line needs to be added which will call the function reponsbible for renering the actual legend.  It is called **renderLegend** and will be passed  **legendValues**.
 
 ```
-function renderLegend(data) {
+function renderValues(data) {
 	// ...previous code	
-	legend(legendValues)
+	renderLegend(legendValues)
 }
 ```
 
-### Creating The Legend
+### Creating The renderLegend Function
 
-Now that we have an array of unique regional values it's time to create the legend. We are going to first grap the DOM element where we intend to append an svg.
-
-```
-const chart = d3.select(".legend");
-```
-
-In order to add some responsiveness to the svg we will set it's height\width to that elements defined width\height. D3 uses the .node() method to grab that elements properties and then we can use .clientWidth & .clientHeight to obtain those respective values. 
+Let's create the renderLegend function and it's first task will be to append a **g** element to the svg with a class of **legend**
 
 ```
-const node = chart.node();
-const width = node.clientWidth;
-const height = node.clientHeight;
-```
-
-Finally we append the svg.
-
-
-```
-const svg = chart
-  .append("svg")
-  .attrs({ height, width });
-```
-
-With the svg in place going to create another function that will generate the legend based on the values stored in the legendValues variable.  It's first responsibility is to create and append the svg and g elements.  For the sake of this much smaller demo on creating a legend were only going to add height as the html defaults of width\height for an svg are 300x150 with 150 being just a bit too small to fit our current legend.
-
-```
-function legend(legendValues){
-	let svg = d3.select('.legend.).append('svg').attrs({height:200})
-	
-	let g = svg.append('g').attr("transform",(d,i) => {
-   		 return "translate(10,10)";
- 	 )
-
+function renderLegend(legendValues) {
+	const g = svg.append("g").attr('class','legend')
+}
 ```
 
 With our container elements in place it's time to do some data binding and add the rect and text elements. Were going to use additional g elements as a wrapper for both the rect and text which provides the ability to move them both together as a group instead of each one individually. Scales aren't being used either so we were going to use a multiple of the index value to position the g elements along the y axis. 
 
 ```
-let legend = g.selectAll("legendItem").data(legendValues)
-	.enter().append("g")
-		.attr("class", "legendItem")
-		.attr("transform", (d,i) => {
-			return "translate(0," + i * 20 + ")";
-		);
+const legend = g
+	.selectAll("legendItem")
+	.data(legendValues)
+	.enter()
+	.append("g")
+	.attr("class", "legendItem")
+	.attr("transform", (d, i) => {
+	  return "translate(0," + i * 20 + ")";
+});
 ```
 
 #### Appending The Rect and Text Elements
 
-Appending the rect and text elements are pretty straightforward.
+Appending the rect and text elements are pretty straightforward and were going to use colorScale to assign a unique color to the each rectangle. 
 
 ```
 legend.append("rect")
-	.attrs({ x: 5, y: 5, width: 10, height: 10 })
-	.style('fill','lightBlue')
+    .attrs({ x: 5, y: 5, width: 10, height: 10 })
+    .style('fill',d => colorScale(d) )
 	
 legend.append("text")
 	.attrs({ x: 25, y: 15 })
 	.text((d,i) =>  { return d );
 ```
 
-#### Adding A Color Scale
-
-The elements apprear to be in their proper places however the rectangles are all the same color.  Were going to reuse the previous colorScale that we applied to the circles based on region and use it to assign that same color scheme to the rectangles. 
-
-```
-const colorScale = d3.scaleOrdinal(d3.schemeCategory10); 
-
-legend.append("rect")
-    .attrs({ x: 5, y: 5, width: 10, height: 10 })
-    .style('fill',d => colorScale(d) )
-```
 
 <details>
 <summary>Full Solution</summary>
