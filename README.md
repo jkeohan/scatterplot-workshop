@@ -1,15 +1,18 @@
 # Building A Scatterplot Using D3
 
-## Importing Data & Rendering Circles
+## Importing Data & Rendering Circles - (60 min)
 
-## Adding X & Y Scales
+## Adding X & Y Scales - (15 min)
 
-## Adding X & Y Axes
+## Adding X & Y Axes - (15 min)
 
-## Adding Circle & Line Transitions
+## Adding Circle & Line Transitions (60 min)
 
 ## Adding A Tooltip (60 min)
 
+## Adding A Legend (60 min)
+
+## Filtering Data Based On Legend Choice
 
 The starter code for this section has been provided so please fork the following codepen: 
 
@@ -328,7 +331,9 @@ legend.append("text")
 	.attrs({ x: 25, y: 15 })
 	.text((d,i) =>  { return d );
 ```
+#### Full Sample Legend Solution
 
+Below is the full solution for implementing a legend. 
 
 <details>
 <summary>Full Solution</summary>
@@ -373,7 +378,7 @@ function legendValues(data) {
 }
 
 function renderLegend(legendValues) {
-  const g = svg.append("g");
+  const g = svg.append("g").attr('class','legend');
 
   const legend = g
     .selectAll("legendItem")
@@ -408,13 +413,13 @@ getData();
 
 ### Applying The Legend To Scatterplot
 
-Now it's time to apply the legend to the scatterplot.  Below is the starter code for the scatterplot so please fork the following codepen and then we will begin: 
+Now it's time to apply the legend to the scatterplot.  We will be working with the below starter code for the scatterplot so please fork the following codepen and then we will begin: 
 
 **Starter Code:** [D3 - Scatterplot - Legend](https://codepen.io/jkeohan/pen/qxXRzB)
 
 #### Making Room For The Legend
 
-In order to make room for the legend the svg width needs to be increased while still maintaining the charts existing width.  To do this we first increase the svg width in CSS from 400 => 600px.  
+In order to make room for the legend the svg width needs to be increased while still maintaining the charts existing width.  To do this I've already increased the svg width in CSS from 400 => 600px.  
 
 Now we reset the chart width by increasing the right margin:
 
@@ -425,6 +430,41 @@ Now we reset the chart width by increasing the right margin:
 // UPDATED RIGHT VALUE TO PROVIDE SPACE NEEDED FOR LEGEND
 const m = { left: 80, right: 150, top: 20, bottom: 70 };
 ```
+
+#### Adding Supporting Functions
+
+Since the functions needed to generate a legend have already been created all we need to do now is copy\paste them to bottom of the render function and then call the **legendData** function. 
+
+```
+// DISPLAY LEGEND
+function legendData(data) {
+	//...legendData code
+}
+function renderLegend(legendValues, data) {
+	//...renderLegend code
+}
+// CALL THE legendData FUNCTION
+  legendData(data)
+```
+
+At this point the legend should have been drawn with the colors conveying the relationship between the circles and their corresponding region. 
+
+#### CodePen Solution Code
+
+Here is the full solution code for the project thus far:
+
+[D3 - Scatterplot - Legend (Non-Interactive) - Solution ](https://codepen.io/jkeohan/pen/wyyRJa?editors=0010)
+
+
+## Filtering Data Based On Legend Choice
+
+The starter code for this section has been provided so please fork the following codepen: 
+
+[D3 - Scatterplot - Legend (Interactive) - Starter](https://codepen.io/jkeohan/pen/oEEJmO?editors=0010)
+
+Although animations almost always enhance the end user experience they should be applied based on end user expectations.  Users that have already worked with interactive data visualizations expect that some functionality be provided that allows them to filter the data set. The most intuitive way to do this in our current scatterplot would be to click on the legend values so that is where we will be implemented. 
+
+####  
 
 ## Additional Resources
 
