@@ -200,6 +200,31 @@ Here is the starter code for this section that we will use for the time being in
 
 One important feature of any visualization is the ability to quicky associate the data based on a property value.  Thus far the visual has in part achieved this by assigning the countries a specific color based on their region. This relationship however has not yet been conveyed to the user and a legend is the best way to quickly establish this association. 
 
+### Append An SVG
+
+The first thing we need to do is grab the DOM element where we will append the svg.
+
+```
+const chart = d3.select(".legend");
+```
+
+In order to add some responsiveness to the svg we will set it's height\width to that elements defined width\height. D3 uses the .node() method to grab that elements properties and then we can use .clientWidth & .clientHeight to obtain those respective values. 
+
+```
+const node = chart.node();
+const width = node.clientWidth;
+const height = node.clientHeight;
+```
+
+Finally we append the svg.
+
+
+```
+const svg = chart
+  .append("svg")
+  .attrs({ height, width });
+```
+
 ### Extracting Region Values From Dataset
 
 Each item in the existing dataset array is an object with key\value pairs and the key that stores the values we need is called: **Region**
@@ -214,7 +239,7 @@ function renderLegend(data) {
 }
 ```
 
-Now inside of the **getData** function let's add the function to lines **19** and **13** passing it **storage**
+Now inside of the **getData** function let's add the function to lines **##** and **##** passing it **storage**
 
 ```
 renderLegend(storage);
@@ -239,7 +264,7 @@ const legendValues = d3.set(
 	)
 
 // OUTPUT
-// {$Asia: "Asia", $Europe: "Europe", $Latin America: …}
+// legendValues => {$Asia: "Asia", $Europe: "Europe", $Latin America: …}
 ```
 
 Although the key\value pairs are unique it's not in an array format the d3 expects.  A few additional method that we can append will be **.value()** to return an array of unique values and **.sort()** to sort them in alphabetical order.
@@ -254,7 +279,7 @@ const legendValues = d3.set(
 	).values().sort()
 
 // OUTPUT
-// ["Asia", "Europe", "Latin America", "Scandanavia", "Africa",...]
+// legendValues => ["Asia", "Europe", "Latin America", "Scandanavia", "Africa",...]
 ```
 
 Only one last line needs to be added to the function and that is to call the **legend** function and pass it **legendValues**.
@@ -266,11 +291,32 @@ function renderLegend(data) {
 }
 ```
 
-
-
 ### Creating The Legend
 
-Now that we have an array of unique regional values it's time to create the legend. Were going to create another function that will generate the legend based on the values stored in the legendValues variable.  It's first responsibility is to create and append the svg and g elements.  For the sake of this much smaller demo on creating a legend were only going to add height as the html defaults of width\height for an svg are 300x150 with 150 being just a bit too small to fit our current legend.
+Now that we have an array of unique regional values it's time to create the legend. We are going to first grap the DOM element where we intend to append an svg.
+
+```
+const chart = d3.select(".legend");
+```
+
+In order to add some responsiveness to the svg we will set it's height\width to that elements defined width\height. D3 uses the .node() method to grab that elements properties and then we can use .clientWidth & .clientHeight to obtain those respective values. 
+
+```
+const node = chart.node();
+const width = node.clientWidth;
+const height = node.clientHeight;
+```
+
+Finally we append the svg.
+
+
+```
+const svg = chart
+  .append("svg")
+  .attrs({ height, width });
+```
+
+With the svg in place going to create another function that will generate the legend based on the values stored in the legendValues variable.  It's first responsibility is to create and append the svg and g elements.  For the sake of this much smaller demo on creating a legend were only going to add height as the html defaults of width\height for an svg are 300x150 with 150 being just a bit too small to fit our current legend.
 
 ```
 function legend(legendValues){
@@ -285,13 +331,12 @@ function legend(legendValues){
 With our container elements in place it's time to do some data binding and add the rect and text elements. Were going to use additional g elements as a wrapper for both the rect and text which provides the ability to move them both together as a group instead of each one individually. Scales aren't being used either so we were going to use a multiple of the index value to position the g elements along the y axis. 
 
 ```
-  // DATA BINDING
-  let legend = g.selectAll("legendItem").data(legendValues)
-  		.enter().append("g")
-  			.attr("class", "legendItem")
-  			.attr("transform", (d,i) => {
-    			return "translate(0," + i * 20 + ")";
-  			);
+let legend = g.selectAll("legendItem").data(legendValues)
+	.enter().append("g")
+		.attr("class", "legendItem")
+		.attr("transform", (d,i) => {
+			return "translate(0," + i * 20 + ")";
+		);
 ```
 
 #### Appending The Rect and Text Elements
@@ -299,14 +344,16 @@ With our container elements in place it's time to do some data binding and add t
 Appending the rect and text elements are pretty straightforward.
 
 ```
-  legend.append("rect")
-    .attrs({ x: 5, y: 5, width: 10, height: 10 })
-    .style('fill','lightBlue')
-    	
-   legend.append("text")
-    .attrs({ x: 25, y: 15 })
-    .text((d,i) =>  { return d );
+legend.append("rect")
+	.attrs({ x: 5, y: 5, width: 10, height: 10 })
+	.style('fill','lightBlue')
+	
+legend.append("text")
+	.attrs({ x: 25, y: 15 })
+	.text((d,i) =>  { return d );
 ```
+
+#### Adding A Color Scale
 
 The elements apprear to be in their proper places however the rectangles are all the same color.  Were going to reuse the previous colorScale that we applied to the circles based on region and use it to assign that same color scheme to the rectangles. 
 
@@ -318,10 +365,101 @@ legend.append("rect")
     .style('fill',d => colorScale(d) )
 ```
 
-#### Applying The Legend To Scatterplot
-The starter code for this section has been provided below so please fork the following codepen: 
+<details>
+<summary>Full Solution</summary>
+
+```
+const chart = d3.select(".legend");
+const node = chart.node();
+const width = node.clientWidth;
+const height = node.clientHeight;
+const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+const svg = chart
+  .append("svg")
+  .attrs({ height: height });
+
+function getData() {
+  const url =
+ "https://gist.githubusercontent.com/jkeohan/974c071a5d4d0185a846/raw/971a9b8dfc0ebe238ee271611991cd98e6cac434/data_regions.csv";
+  let storage = localStorage.getItem("countries");
+  if (storage) {
+    storage = JSON.parse(storage);
+    storage.sort(function(x, y) {
+      return d3.ascending(x["2002"], y["2002"]);
+    });
+    legendValues(storage);
+  } else {
+    d3.csv(url, function(data) {
+      localStorage.setItem("countries", JSON.stringify(data));
+      legendValues(data);
+    });
+  }
+}
+
+function legendValues(data) {
+  legendValues = d3
+    .set(
+      data.map(d => d.Region).filter(function(d) {
+        return !(d == "World");
+      })
+    )
+    .values().sort(d3.decscending);
+  renderLegend(legendValues);
+}
+
+function renderLegend(legendValues) {
+  const g = svg.append("g");
+
+  const legend = g
+    .selectAll("legendItem")
+    .data(legendValues)
+    .enter()
+    .append("g")
+    .attr("class", "legendItem")
+    .attr("transform", (d, i) => {
+      return "translate(0," + i * 20 + ")";
+    });
+
+  legend
+    .append("rect")
+    .attrs({ x: 5, y: 5, width: 10, height: 10 })
+    .style("fill", d => colorScale(d));
+
+  legend
+    .append("text")
+    .attrs({ x: 25, y: 15 })
+    .text((d, i) => {
+      return d;
+    });
+}
+
+getData();
+
+
+```
+
+</details>
+
+
+### Applying The Legend To Scatterplot
+
+Now it's time to apply the legend to the scatterplot.  Below is the starter code for the scatterplot so please fork the following codepen and then we will begin: 
 
 **Starter Code:** [D3 - Scatterplot - Legend](https://codepen.io/jkeohan/pen/qxXRzB)
+
+#### Making Room For The Legend
+
+In order to make room for the legend the svg width needs to be increased while still maintaining the charts existing width.  To do this we first increase the svg width in CSS from 400 => 600px.  
+
+Now we reset the chart width by increasing the right margin:
+
+```
+// PREVIOUS 
+// const m = { left: 80, right: 20, top: 20, bottom: 70 };
+
+// UPDATED RIGHT VALUE TO PROVIDE SPACE NEEDED FOR LEGEND
+const m = { left: 80, right: 150, top: 20, bottom: 70 };
+```
 
 ## Additional Resources
 
