@@ -254,11 +254,11 @@ Although the key\value pairs are unique it's not in an array format the d3 expec
 
 ```
 const legendValues = d3.set(
-	data.map(d => d.Region)
- 		.filter(function(d) {
-      		return !(d == "World");
-    	})
-	).values().sort()
+  data.map(d => d.Region)
+   .filter(function(d) {
+     return !(d == "World");
+    })
+ ).values().sort()
 
 // OUTPUT
 // legendValues => ["Asia", "Europe", "Latin America", "Scandanavia", "Africa",...]
@@ -268,8 +268,8 @@ Only one last line needs to be added which will call the function reponsbible fo
 
 ```
 function renderValues(data) {
-	// ...previous code	
-	renderLegend(legendValues)
+  // ...previous code	
+  renderLegend(legendValues)
 }
 ```
 
@@ -279,7 +279,7 @@ Let's create the renderLegend function and it's first task will be to append a *
 
 ```
 function renderLegend(legendValues) {
-	const legend = svg.append("g").attr('class','legend')
+  const legend = svg.append("g").attr('class','legend')
 }
 ```
 
@@ -287,14 +287,14 @@ With our container elements in place it's time to do some data binding and add t
 
 ```
 const legendItems = legend
-	.selectAll("legendItem")
-	.data(legendValues)
-	.enter()
-	.append("g")
-	.attr("class", "legendItem")
-	.attr("transform", (d, i) => {
-	  return "translate(0," + i * 20 + ")";
-});
+  .selectAll("legendItem")
+  .data(legendValues)
+ .enter()
+  .append("g")
+  .attr("class", "legendItem")
+  .attr("transform", (d, i) => {
+    return "translate(0," + i * 20 + ")";
+  });
 ```
 
 #### Appending The Rect and Text Elements
@@ -303,8 +303,8 @@ Appending the rect and text elements are pretty straightforward and were going t
 
 ```
 legendItems.append("rect")
-    .attrs({ x: 5, y: 5, width: 10, height: 10 })
-    .style('fill',d => colorScale(d) )
+  .attrs({ x: 5, y: 5, width: 10, height: 10 })
+  .style('fill',d => colorScale(d) )
 	
 legendItems.append("text")
 	.attrs({ x: 25, y: 15 })
