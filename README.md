@@ -230,7 +230,7 @@ Each item in the existing dataset array is an object with key\value pairs and th
 
 D3 offers a set of convenience methods for manipulating data which are available in the full d3 library or in the d3-collection module.  One method in particular is [d3.set](https://github.com/d3/d3-collection/blob/master/README.md#set) which is like ES6 Sets in that it creates a new object that stores unique values.  There are some additional differences however they aren't relevant to the topic at hand. 
 
-On line **##** Let's create a new function called **renderLegend** as follows that takes in our dataset and console.logs it. 
+Let's create a new function called **renderLegend** as follows that takes in our dataset and console.logs it. 
 
 ```
 function renderLegend(data) {
@@ -238,7 +238,7 @@ function renderLegend(data) {
 }
 ```
 
-Now inside of the **getData** function let's add the function to lines **##** and **##** passing it **storage**
+Now inside of the **getData** function let's add the function to lines **10** and **16** passing it **storage**
 
 ```
 renderLegend(storage);
@@ -456,7 +456,7 @@ Here is the full solution code for the project thus far:
 
 The starter code for this section has been provided so please fork the following codepen: 
 
-[D3 - Scatterplot - Legend (Interactive) - Starter](https://codepen.io/jkeohan/pen/oEEJmO?editors=0010)
+[D3 - Scatterplot - Legend (Interactive) - Starter](https://codepen.io/jkeohan/pen/vddbmG)
 
 Although animations almost always enhance the end user experience they should be applied based on end user expectations.  Users that have already worked with interactive data visualizations expect that some functionality be provided that allows them to filter the data set. The most intuitive way to do this in our current scatterplot would be to click on the legend values so that is where we will be implemented. 
 
@@ -562,6 +562,12 @@ function legendTransition(region) {
     });
 }
 ```
+
+#### CodePen Solution Code
+
+Here is the full solution code for the project thus far:
+
+[D3 - Scatterplot - Legend (Interactive) - Solution) - Solution ](https://codepen.io/jkeohan/pen/KQRKGj?editors=0010)
 
 ## Additional Resources
 
