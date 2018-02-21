@@ -307,8 +307,8 @@ legendItems.append("rect")
   .style('fill',d => colorScale(d) )
 	
 legendItems.append("text")
-	.attrs({ x: 25, y: 15 })
-	.text((d,i) =>  { return d );
+  .attrs({ x: 25, y: 15 })
+  .text((d,i) =>  { return d );
 ```
 #### Full Sample Legend Solution
 
@@ -326,24 +326,6 @@ const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
 const svg = chart
   .append("svg")
   .attrs({ height: height });
-
-function getData() {
-  const url =
- "https://gist.githubusercontent.com/jkeohan/974c071a5d4d0185a846/raw/971a9b8dfc0ebe238ee271611991cd98e6cac434/data_regions.csv";
-  let storage = localStorage.getItem("countries");
-  if (storage) {
-    storage = JSON.parse(storage);
-    storage.sort(function(x, y) {
-      return d3.ascending(x["2002"], y["2002"]);
-    });
-    legendValues(storage);
-  } else {
-    d3.csv(url, function(data) {
-      localStorage.setItem("countries", JSON.stringify(data));
-      legendValues(data);
-    });
-  }
-}
 
 function legendValues(data) {
   legendValues = d3
@@ -380,6 +362,24 @@ function renderLegend(legendValues) {
     .text((d, i) => {
       return d;
     });
+}
+
+function getData() {
+  const url =
+ "https://gist.githubusercontent.com/jkeohan/974c071a5d4d0185a846/raw/971a9b8dfc0ebe238ee271611991cd98e6cac434/data_regions.csv";
+  let storage = localStorage.getItem("countries");
+  if (storage) {
+    storage = JSON.parse(storage);
+    storage.sort(function(x, y) {
+      return d3.ascending(x["2002"], y["2002"]);
+    });
+    legendValues(storage);
+  } else {
+    d3.csv(url, function(data) {
+      localStorage.setItem("countries", JSON.stringify(data));
+      legendValues(data);
+    });
+  }
 }
 
 getData();
