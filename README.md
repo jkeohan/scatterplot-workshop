@@ -172,7 +172,7 @@ Here is the starter code for this section that we will use for the time being in
 
 **Starter Code:** [D3 - Vertical Legend - Starter](https://codepen.io/jkeohan/pen/qxYeNj?editors=0010)
 
-One important feature of any visualization is the ability to quicky associate the data based on a property value.  Thus far the visual has in part achieved this by assigning the countries a specific color based on their region. This relationship however has not yet been conveyed to the user and a legend is the best way to quickly establish this association. 
+One important feature of any visualization is the ability to quicky associate the data based on a related property value.  Thus far the scatterplot has, in part, achieved this by assigning the countries a specific color based on their region. This relationship however has not yet been conveyed to the user and a legend is the best way to quickly establish this association. 
 
 ### Append An SVG
 
@@ -190,7 +190,7 @@ const width = node.clientWidth;
 const height = node.clientHeight;
 ```
 
-Finally we append the svg.
+Finally we append the svg and set it's height and width.
 
 
 ```
@@ -203,17 +203,17 @@ const svg = chart
 
 Each item in the existing dataset array is an object with key\value pairs and the key that stores the values we need is called: **Region**
 
-D3 offers a set of convenience methods for manipulating data which are available in the full d3 library or in the d3-collection module.  One method in particular is [d3.set](https://github.com/d3/d3-collection/blob/master/README.md#set) which is like ES6 Sets in that it creates a new object that stores unique values.  There are some additional differences however they aren't relevant to the topic at hand. 
+D3 offers a set of convenience methods for manipulating data which are available in the full d3 library or in the **d3-collection module**.  One method in particular is [d3.set](https://github.com/d3/d3-collection/blob/master/README.md#set) which is like ES6 Sets in that it creates a new object that stores unique values. 
 
-Let's create a new function called **renderLegend** as follows that takes in our dataset and console.logs it. 
+Let's create a new function called **renderLegend** that takes in our current dataset and console logs it to confirm it's working.
 
 ```
 function renderLegend(data) {
-	console.log(data)
+ console.log(data)
 }
 ```
 
-Now inside of the **getData** function let's add the function to lines **10** and **16** passing it **storage**
+Now inside of the **getData** function let's add the function passing it **storage**
 
 ```
 renderLegend(storage);
