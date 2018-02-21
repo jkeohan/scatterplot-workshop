@@ -8,11 +8,12 @@
 
 ## Adding Circle & Line Transitions (60 min)
 
-## Adding A Tooltip (60 min)
+## [Adding A Tooltip](#adding-a-tooltip-60min) 
 
 ## [Adding A Legend](#adding-a-legend-60min)
 
 
+## Adding A Tooltip 60min
 
 The starter code for this section has been provided so please fork the following codepen: 
 
