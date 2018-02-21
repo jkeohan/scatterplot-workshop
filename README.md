@@ -389,14 +389,14 @@ function getData() {
 
 getData();
 ```
+</details>
+
 
 #### CodePen Solution Code
 
 Here is the full solution code for the project thus far:
 
 [D3 - Vertical Legend - Solution ) - Solution ](https://codepen.io/jkeohan/pen/oEEvJB?editors=0010)
-
-</details>
 
 
 ### Applying The Legend To Scatterplot
