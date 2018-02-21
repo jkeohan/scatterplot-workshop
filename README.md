@@ -10,6 +10,10 @@
 
 ## Adding A Tooltip (60 min)
 
+## Adding A Legend (Non-Interactive) - 30min
+
+[Adding A Legend](#adding-a-legend)
+
 The starter code for this section has been provided so please fork the following codepen: 
 
 **Starter Code:** [D3 - Scatterplot - ToolTip - Starter](https://codepen.io/jkeohan/pen/wyWjXq)
@@ -161,7 +165,7 @@ Here are some additional resources on d3 tooltips:
 - [blockbuilder.org - filtered by d3-tip](http://blockbuilder.org/search#d3modules%3Dd3-tip%2Cd3-legend)
 - [D3.js Step by Step: Adding Tooltips](http://zeroviscosity.com/d3-js-step-by-step/step-5-adding-tooltips)
 
-## Adding A Legend (Non-Interactive) - 30min
+### Adding A Legend
 
 Here is the starter code for this section that we will use for the time being in order to focus on creating just the legend.  Once this has been completed we will reimplement the legend in the context of the scatterplot.
 
@@ -539,8 +543,9 @@ Here is the full solution code for the project thus far:
 
 [D3 - Scatterplot - Legend (Interactive) - Solution) - Solution ](https://codepen.io/jkeohan/pen/KQRKGj?editors=0010)
 
-## Additional Resources
+### Additional Legend Resources
 
-[d3noob.org](http://www.d3noob.org/2014/02/styles-in-d3js.html)
+- [d3-legend](http://d3-legend.susielu.com/#color-ordinal)
+- [d3noob.org](http://www.d3noob.org/2014/02/styles-in-d3js.html)
 
 
