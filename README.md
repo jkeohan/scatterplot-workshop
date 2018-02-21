@@ -10,7 +10,7 @@
 
 ## Adding A Tooltip (60 min)
 
-## [Adding A Legend](#adding-a-legend)
+## [Adding A Legend](#adding-a-legend-(non-interactive))
 
 
 
