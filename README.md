@@ -394,9 +394,9 @@ getData();
 
 #### CodePen Solution Code
 
-Here is the full solution code for the project thus far:
+Here is the full solution for the vertical legend:
 
-[D3 - Vertical Legend - Solution ) - Solution ](https://codepen.io/jkeohan/pen/oEEvJB?editors=0010)
+[D3 - Vertical Legend - Solution](https://codepen.io/jkeohan/pen/oEEvJB?editors=0010)
 
 
 ### Applying The Legend To Scatterplot
