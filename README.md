@@ -227,7 +227,7 @@ if (storage) {
 }
 ```
 
-The output should be as expected and something we've already seen in the previous iterations of the scatterplot however i've removed the years from 2003 - 2011 to keep it concise.
+The output is something we've already seen in the previous iterations of the scatterplot however i've removed the years from 2003 - 2011 to keep it concise.
 
 ```
 {2002: "0.4", 2012: "0.7", Location: "Korea", Region: "Asia"}
@@ -239,11 +239,11 @@ Now let's use d3.set to create a new set and then filter it to remove duplicate 
 
 ```
 const legendValues = d3.set(
-	data.map(d => d.Region)
- 		.filter(function(d) {
-      		return !(d == "World");
-  		})
-	)
+ data.map(d => d.Region)
+	.filter(function(d) {
+  		return !(d == "World");
+	})
+)
 
 // OUTPUT
 // legendValues => {$Asia: "Asia", $Europe: "Europe", $Latin America: …}
