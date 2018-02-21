@@ -10,9 +10,9 @@
 
 ## Adding A Tooltip (60 min)
 
-## Adding A Legend (Non-Interactive) - 30min
+## [Adding A Legend](#adding-a-legend)
 
-[Adding A Legend](#adding-a-legend)
+
 
 The starter code for this section has been provided so please fork the following codepen: 
 
