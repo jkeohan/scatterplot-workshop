@@ -135,36 +135,6 @@ Of course a smooth transition is what were looking for so one more line is all w
 tooltip.transition().duration(1000).style("opacity",1)
 ```
 
-Here is the full solution code for the displayToolTip function: 
-<details>
-<summary>Full Solution</summary>
-
-```
-function displayToolTip(selection){
-  const d = selection.datum()
-  const cx = +selection.attr("cx")
-  const cy = +selection.attr("cy")
-  const tooltip = d3.select(".regionalstats")
-  	.append("div").attr("class","d3tooltip")
-  	
-  tooltip   
-    .style("opacity",0)
-    .style('left', (cx + 160) + 'px')
-    .style("top", (cy + 30) + "px") 
-    .style("border" , "3px solid " + d.color )
- 
-  tooltip.append('span').attr('class','regionName').html(d.Location)
-  tooltip.append('hr').attr('class','d3tooltiphr').style('border',`2px solid ${d.color}`)
-  tooltip.append('span').attr('class','key-2002').html('2002')
-  tooltip.append('span').attr('class','value').html(`${d['2002']}%`).append('br')
-  tooltip.append('span').attr('class','key-2012').html('2012')
-  tooltip.append('span').attr('class','value').html(`${d['2012']}%`)
-  
-  tooltip.transition().duration(1000).style("opacity",1)
-}
-```
-</details>
-
 #### Removing the Tooltip
 
 I suppose the last thing needed is to remove the tooltip on **mouseout**.  Create the following function and add it as the last line to the mouseout function.
