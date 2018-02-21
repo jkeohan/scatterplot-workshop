@@ -10,7 +10,7 @@
 
 ## Adding A Tooltip (60 min)
 
-## [Adding A Legend](#adding-a-legend-(non-interactive))
+## [Adding A Legend](#adding-a-legend-60min)
 
 
 
@@ -165,7 +165,7 @@ Here are some additional resources on d3 tooltips:
 - [blockbuilder.org - filtered by d3-tip](http://blockbuilder.org/search#d3modules%3Dd3-tip%2Cd3-legend)
 - [D3.js Step by Step: Adding Tooltips](http://zeroviscosity.com/d3-js-step-by-step/step-5-adding-tooltips)
 
-## Adding A Legend
+## Adding A Legend 60min
 
 Here is the starter code for this section that we will use for the time being in order to focus on creating just the legend.  Once this has been completed we will reimplement the legend in the context of the scatterplot.
 
