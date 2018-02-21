@@ -1,12 +1,12 @@
 # Building A Scatterplot Using D3
 
-## Importing Data & Rendering Circles - (60 min)
+## Importing Data & Rendering Circles
 
-## Adding X & Y Scales - (15 min)
+## Adding X & Y Scales
 
-## Adding X & Y Axes - (15 min)
+## Adding X & Y Axes
 
-## Adding Circle & Line Transitions (60 min)
+## Adding Circle & Line Transitions
 
 ## [Adding A Tooltip](#adding-a-tooltip-60min) 
 
@@ -375,9 +375,13 @@ function renderLegend(legendValues) {
 }
 
 getData();
-
-
 ```
+
+#### CodePen Solution Code
+
+Here is the full solution code for the project thus far:
+
+[D3 - Vertical Legend - Solution ) - Solution ](https://codepen.io/jkeohan/pen/oEEvJB?editors=0010)
 
 </details>
 
