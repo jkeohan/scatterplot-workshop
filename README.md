@@ -190,8 +190,13 @@ const width = node.clientWidth;
 const height = node.clientHeight;
 ```
 
-Finally we append the svg and set it's height and width.
+Since our goal is to assign colors to each legend item we also need to add a color scale.
 
+```
+const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+```
+
+Finally we append the svg and set it's height and width.
 
 ```
 const svg = chart
