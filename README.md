@@ -170,7 +170,7 @@ Here are some additional resources on d3 tooltips:
 
 Here is the starter code for this section that we will use for the time being in order to focus on creating just the legend.  Once this has been completed we will reimplement the legend in the context of the scatterplot.
 
-**Starter Code:** [D3 - Vertical Legend - Starter](https://codepen.io/jkeohan/pen/zRzzpb?editors=0010)
+**Starter Code:** [D3 - Vertical Legend - Starter](https://codepen.io/jkeohan/pen/qxYeNj?editors=0010)
 
 One important feature of any visualization is the ability to quicky associate the data based on a property value.  Thus far the visual has in part achieved this by assigning the countries a specific color based on their region. This relationship however has not yet been conveyed to the user and a legend is the best way to quickly establish this association. 
 
