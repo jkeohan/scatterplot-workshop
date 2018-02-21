@@ -240,9 +240,9 @@ Now let's use d3.set to create a new set and then filter it to remove duplicate 
 ```
 const legendValues = d3.set(
  data.map(d => d.Region)
-	.filter(function(d) {
-  		return !(d == "World");
-	})
+  .filter(function(d) {
+    return !(d == "World");
+  })
 )
 
 // OUTPUT
