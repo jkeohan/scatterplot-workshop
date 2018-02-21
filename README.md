@@ -213,10 +213,18 @@ function renderLegend(data) {
 }
 ```
 
-Now inside of the **getData** function let's add the function passing it **storage**
+Now inside of the **getData** function let's add the function to the if\else statement. 
 
 ```
-renderLegend(storage);
+if (storage) {
+ storage = JSON.parse(storage);
+ legendData(storage);
+} else {
+   d3.csv(url, function(data) {
+    localStorage.setItem("countries", JSON.stringify(data));
+    legendData(data);
+   });
+}
 ```
 
 The output should be as expected and something we've already seen in the previous iterations of the scatterplot however i've removed the years from 2003 - 2011 to keep it concise.
