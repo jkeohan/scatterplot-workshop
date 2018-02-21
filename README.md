@@ -403,7 +403,7 @@ Here is the full solution for the vertical legend:
 
 Now it's time to apply the legend to the scatterplot.  We will be working with the below starter code for the scatterplot so please fork the following codepen and then we will begin: 
 
-**Starter Code:** [D3 - Scatterplot - Legend](https://codepen.io/jkeohan/pen/qxXRzB)
+**Starter Code:** [D3 - Scatterplot - Legend - Starter](https://codepen.io/jkeohan/pen/qxXRzB)
 
 #### Making Room For The Legend
 
@@ -559,7 +559,7 @@ function legendTransition(region) {
 
 Here is the full solution code for the project thus far:
 
-[D3 - Scatterplot - Legend (Interactive) - Solution) - Solution ](https://codepen.io/jkeohan/pen/KQRKGj?editors=0010)
+[D3 - Scatterplot - Legend (Interactive) - Solution](https://codepen.io/jkeohan/pen/KQRKGj?editors=0010)
 
 ### Additional Legend Resources
 
