@@ -4,7 +4,11 @@ This is a full day tutorial on building a scatterplot using D3. It explores key 
 
 Here's a breakdown of the steps we'll be covering: 
 
-- Importing Data & Rendering Circles
+Module 1: Importing Data & Rendering Circles
+
+We'll cover the basics of D3 and how it can be used to create basic shapes. We then use it to import data and render those data points as circles. 
+
+
 - Adding X & Y Scales\Axes
 - Adding Circle & Line Transitions
 - [Adding A Tooltip](adding-a-tooltip.md) 
