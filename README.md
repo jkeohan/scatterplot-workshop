@@ -206,9 +206,7 @@ const svg = chart
 
 ### Extracting Region Values From Dataset
 
-Each item in the existing dataset array is an object with key\value pairs and the key that stores the values we need is called: **Region**
-
-D3 offers a set of convenience methods for manipulating data which are available in the full d3 library or in the **d3-collection module**.  One method in particular is [d3.set](https://github.com/d3/d3-collection/blob/master/README.md#set) which is like ES6 Sets in that it creates a new object that stores unique values. 
+Each item in the existing dataset array is an object with key\value pairs and the key that stores the values we need is called: **Region**.
 
 Let's create a new function called **renderLegend** that takes in our current dataset and console logs it to confirm it's working.
 
@@ -240,7 +238,9 @@ The output is something we've already seen in the previous iterations of the sca
 
 ### Using d3.set
 
-Now let's use d3.set to create a new set and then filter it to remove duplicate region names as well as filter out the "World" object.   
+D3 offers a set of convenience methods for manipulating data which are available in the full d3 library or in the **d3-collection module**.  One method in particular is [d3.set](https://github.com/d3/d3-collection/blob/master/README.md#set) which is like ES6 Sets in that it creates a new object that stores unique values. 
+
+Let's use d3.set to create a new set and then filter it to remove duplicate region names as well as filter out the "World" object.   
 
 ```
 const legendValues = d3.set(
