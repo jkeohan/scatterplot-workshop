@@ -1,5 +1,7 @@
 ## Filtering Data Based On Legend Choice 
 
+#### CodePen Solution Code
+
 The starter code for this section has been provided so please fork the following codepen: 
 
 [D3 - Scatterplot - Legend (Interactive) - Starter](https://codepen.io/jkeohan/pen/vddbmG)
