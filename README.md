@@ -5,8 +5,7 @@ This is a full day tutorial on building a scatterplot using D3. It explores key 
 Here's a breakdown of the steps we'll be covering: 
 
 - Importing Data & Rendering Circles
-- Adding X & Y Scales
-- Adding X & Y Axes
+- Adding X & Y Scales\Axes
 - Adding Circle & Line Transitions
 - [Adding A Tooltip](adding-a-tooltip.md) 
 - [Adding A Legend](adding-a-legend.md)
