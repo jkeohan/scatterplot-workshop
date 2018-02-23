@@ -11,8 +11,8 @@ We'll cover the basics of D3 and how it can be used to create basic shapes. We t
 
 #### Module 2: Adding X & Y Scales\Axes
 #### Module 3: Adding Circle & Line Transitions
-#### Module 4:[Adding A Tooltip](adding-a-tooltip.md) 
-#### Module 5:[Adding A Legend](adding-a-legend.md)
+#### Module 4: [Adding A Tooltip](adding-a-tooltip.md) 
+#### Module 5: [Adding A Legend](adding-a-legend.md)
 
 
 
