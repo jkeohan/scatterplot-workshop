@@ -1,4 +1,4 @@
-## Adding A Legend 60min
+## Adding A Legend - (EST: 90 min)
 
 Here is the starter code for this section that we will use for the time being in order to focus on creating just the legend.  Once this has been completed we will reimplement the legend in the context of the scatterplot.
 

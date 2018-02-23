@@ -1,4 +1,4 @@
-## Adding A Tooltip 60min
+## Adding A Tooltip - (EST: 60 min)
 
 The starter code for this section has been provided so please fork the following codepen: 
 
