@@ -147,6 +147,7 @@ legendItems.append("text")
   .attrs({ x: 25, y: 15 })
   .text((d,i) =>  { return d );
 ```
+
 #### Full Sample Legend Solution
 
 Below is the full solution for implementing a legend. 
