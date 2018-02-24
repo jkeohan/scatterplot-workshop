@@ -286,6 +286,36 @@ Here is the starter code for the vertical legend using d3-legend:
 
 [D3 - Vertical Legend - D3-Legend - Starter](https://codepen.io/jkeohan/pen/EQeaMg?editors=0010)
 
+#### Initial Setup
+
+So the first thing we will do if import the d3-legend.js library.  To do this we will add the following url add an additional JS library in our CodePen starter code. 
+
+```
+https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.5/d3-legend.min.js
+```
+
+#### The Refactor
+
+Since the renderLegend function is what we used to build out the legend that's what we are going to refactor.  First were going to add the legendValues to the color domain as d3-legend requires a scale to build out it's legend. 
+
+```
+colorScale.domain(legendValues)
+```
+
+Next we will edit the transform\translate to move it down on the y axis a bit. 
+
+```
+let legend = svg.append("g").attr("class","legend")
+  .attr("transform", "translate(20,20)");
+```
+
+Now we will focus on using d3-legend to build out the legend.  We will first create a new variable to store the legend which we will then use .call() to pass the svg and build out the legend.  There are a few different types of legends that are provided and were focused on building a basic ordinal color legend so were going to use **d3.legendColor()**.  
+
+```
+let legendOrdinal = d3.legendColor()
+```
+
+
 
 <details>
 <summary>Full Solution</summary>
