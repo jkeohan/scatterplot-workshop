@@ -286,6 +286,27 @@ Here is the starter code for the vertical legend using d3-legend:
 
 [D3 - Vertical Legend - D3-Legend - Starter](https://codepen.io/jkeohan/pen/EQeaMg?editors=0010)
 
+
+<details>
+<summary>Full Solution</summary>
+```
+function renderLegend(legendValues) {
+  colorScale.domain(legendValues)
+  let legend = svg.append("g").attr("class","legend")
+  .attr("transform", "translate(20,20)");
+
+  let legendOrdinal = d3.legendColor()
+  .shape("path", d3.symbol().type(d3.symbolSquare).size(100)())
+  .shapePadding(2)
+  .scale(colorScale )
+  .on("cellclick", function(d){alert("clicked " + d);});;
+  
+  svg.select(".legend")
+  .call(legendOrdinal);
+}
+```
+</details>
+
 ### Additional Legend Resources
 
 - [d3-legend](http://d3-legend.susielu.com/#color-ordinal)
