@@ -37,27 +37,48 @@ Now we will focus on using d3-legend to build out the legend.  We will first cre
 let legendOrdinal = d3.legendColor()
 ```
 
-It provides several additional methods that we will use to configure the shape used, padding, passing it the scale and event listeners  
+It provides several additional methods that we will use to configure the shape used, padding, passing it the scale and event listeners.  
 
-Let's add the rectangles and use .shape() to pass it a specific shape using 
+Let's add the rectangles using the .shape() method.  In d3v4 the **d3-shape** module was added and includes generators to create shapes such as arcs, pie, lines and amongst other things some commonly used symbols.  Below the shape method is passed the **path** attribute and uses d3 to generate the shape. 
+
+```
+let legendOrdinal = d3.legendColor()
+  .shape("path", d3.symbol().type(d3.symbolSquare).size(100)())
+```
+
+The additional methods we will add to complete the legend are: .shapePadding(), .scale() and .on()
+
+```
+let legendOrdinal = d3.legendColor()
+  .shape("path", d3.symbol().type(d3.symbolSquare).size(100)())
+  .shapePadding(2)
+  .scale(colorScale)
+  .on("cellclick", function(d){alert("clicked " + d);});;
+```
+
+With the legend properly configured all that's left to do is pass it the svg element using .call().
+
+```
+svg.select(".legend").call(legendOrdinal);
+```
 
 <details>
 <summary>Full Solution</summary>
 
 ```
 function renderLegend(legendValues) {
-  colorScale.domain(legendValues)
   let legend = svg.append("g").attr("class","legend")
   .attr("transform", "translate(20,20)");
+
+  colorScale.domain(legendValues)
 
   let legendOrdinal = d3.legendColor()
   .shape("path", d3.symbol().type(d3.symbolSquare).size(100)())
   .shapePadding(2)
-  .scale(colorScale )
+  .scale(colorScale)
   .on("cellclick", function(d){alert("clicked " + d);});;
   
-  svg.select(".legend")
-  .call(legendOrdinal);
+  svg.select(".legend").call(legendOrdinal);
 }
 ```
 </details>
@@ -65,4 +86,5 @@ function renderLegend(legendValues) {
 ### Additional Legend Resources
 
 - [d3-legend](http://d3-legend.susielu.com/#color-ordinal)
+- [d3-shape](https://github.com/d3/d3-shape)
 - [d3noob.org](http://www.d3noob.org/2014/02/styles-in-d3js.html)
