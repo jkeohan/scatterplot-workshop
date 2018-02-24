@@ -13,6 +13,7 @@ We'll cover the basics of D3 and how it can be used to create basic shapes. We t
 #### Module 3: Adding Circle & Line Transitions
 #### Module 4: [Adding A Tooltip](module-4-adding-a-tooltip.md) 
 #### Module 5: [Adding A Legend](module-5-adding-a-legend.md)
+#### Module 6: [Using Leged To Filter Dataset](module-6-using-legend-to-filter-dataset.md)
 
 
 
