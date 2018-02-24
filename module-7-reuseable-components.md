@@ -83,6 +83,12 @@ function renderLegend(legendValues) {
 ```
 </details>
 
+#### CodePen Solution Code
+
+Here is the starter code for the vertical legend using d3-legend:
+
+[D3 - Vertical Legend - D3-Legend - Solution](https://codepen.io/jkeohan/pen/rJZaYN?editors=0010)
+
 ### Additional Legend Resources
 
 - [d3-legend](http://d3-legend.susielu.com/#color-ordinal)
