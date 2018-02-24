@@ -289,6 +289,7 @@ Here is the starter code for the vertical legend using d3-legend:
 
 <details>
 <summary>Full Solution</summary>
+
 ```
 function renderLegend(legendValues) {
   colorScale.domain(legendValues)
