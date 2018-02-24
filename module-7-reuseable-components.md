@@ -1,4 +1,10 @@
-### Alternate Legend Solution Using D3-Legend
+## Reusable Components
+
+D3V4 is a collection of modules that are designed to work together; you can use the modules independently, or you can use them together as part of the default build.  The modules include components that provide the user a degree of reusability.  The D3 community has also extended this concept by creating additional components that facilitate creating elements such as tooltips, legends, maps, ect...
+
+In this module we will explore some of these reusable components as well as create our own reusable legend component. 
+
+### The D3-Legend Component 
 
 Since legends are something that most people incorporate when building charts and graphs and they are require only a handful of code to create it seems like the perfect choice for making them reusable.  This is just what Susie Lu did when she built the [d3-legend](http://d3-legend.susielu.com/) library.  The library provides standard legend solutions that are configrable and easy to implement.  Let's take a moment and refactor the previous Vertical legend example ot leverage d3-legend. 
 
@@ -93,4 +99,9 @@ Here is the starter code for the vertical legend using d3-legend:
 
 - [d3-legend](http://d3-legend.susielu.com/#color-ordinal)
 - [d3-shape](https://github.com/d3/d3-shape)
+- https://bl.ocks.org/feyderm/4d143591b66725aed0f1855444752fd9
 - [d3noob.org](http://www.d3noob.org/2014/02/styles-in-d3js.html)
+
+### Creating Our First Reusable Component 
+
+
