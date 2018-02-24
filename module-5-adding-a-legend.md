@@ -276,6 +276,16 @@ Here is the full solution code for the project thus far:
 
 [D3 - Scatterplot - Legend (Non-Interactive) - Solution ](https://codepen.io/jkeohan/pen/wyyRJa?editors=0010)
 
+#### Alternate Legend Solution Using D3-Legend
+
+Since legends are something that most people incorporate when building charts and graphs and they are require only a handful of code to create it seems like the perfect choice for making them reusable.  This is just what Susie Lu did when she built the [d3-legend](http://d3-legend.susielu.com/) library.  The library provides standard legend solutions that are configrable and easy to implement.  Let's take a moment and refactor the previous Vertical legend example ot leverage d3-legend. 
+
+#### CodePen Starter Code
+
+Here is the starter code for the vertical legend using d3-legend:
+
+[D3 - Vertical Legend - D3-Legend - Starter](https://codepen.io/jkeohan/pen/EQeaMg?editors=0010)
+
 ### Additional Legend Resources
 
 - [d3-legend](http://d3-legend.susielu.com/#color-ordinal)
