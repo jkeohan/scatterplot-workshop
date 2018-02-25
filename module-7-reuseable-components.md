@@ -8,7 +8,7 @@ In this module we will explore some of these reusable components as well as crea
 
 Since legends are something that most people incorporate when building charts and graphs and they are require only a handful of code to create it seems like the perfect choice for making them reusable.  This is just what Susie Lu did when she built the [d3-legend](http://d3-legend.susielu.com/) library.  The library provides standard legend solutions that are configrable and easy to implement.  Let's take a moment and refactor the previous Vertical legend example ot leverage d3-legend. 
 
-#### CodePen Starter Code
+#### Starter CodePen 
 
 Here is the starter code for the vertical legend using d3-legend:
 
@@ -89,19 +89,25 @@ function renderLegend(legendValues) {
 ```
 </details>
 
-#### CodePen Solution Code
+#### Solution CodePen 
 
 Here is the starter code for the vertical legend using d3-legend:
 
 [D3 - Vertical Legend - D3-Legend - Solution](https://codepen.io/jkeohan/pen/rJZaYN?editors=0010)
 
-### Additional Legend Resources
+### Creating Our First Reusable Component 
+
+I'm sure by now you've come to the conclusion that it's much easier to incorporate a reusable legend then create your own from scratch.  With that in mind let's take a step back and create our own reusable legend.
+
+#### Starter CodePen 
+
+Here is the starter code for the vertical legend using d3-legend:
+
+[D3 - Reusable Legend - Starter](https://codepen.io/jkeohan/pen/EQeaMg?editors=0010)
+
+#### Additional Resources
 
 - [d3-legend](http://d3-legend.susielu.com/#color-ordinal)
 - [d3-shape](https://github.com/d3/d3-shape)
 - https://bl.ocks.org/feyderm/4d143591b66725aed0f1855444752fd9
 - [d3noob.org](http://www.d3noob.org/2014/02/styles-in-d3js.html)
-
-### Creating Our First Reusable Component 
-
-
