@@ -4,7 +4,7 @@ The starter code for this section has been provided so please fork the following
 
 **Starter Code:** [D3 - Scatterplot - ToolTip - Starter](https://codepen.io/jkeohan/pen/wyWjXq)
 
-Tooltips help elicit additional information about a specific data point. In the case of the scatterplot it will be used to show the percent output of the country for years 2002 & 2012.  It can, however, be extended to show all the years and their corresponding values as a table or even a mini bar chart.  When approaching the design one should always consider what information would be most relevant and/or useful to the user as they investigate the data. 
+Tooltips help elicit additional information about a specific data point. In the case of the scatterplot it will be used to show the percent output of the country for years 2002 & 2012.  It can, however, be extended to show all the years and their corresponding values as a table or even a mini bar chart.  When approaching the design, one should always consider what information would be most relevant and/or useful to the user as they investigate the data. 
 
 Adding a tooltip will require that we do the following:
 
