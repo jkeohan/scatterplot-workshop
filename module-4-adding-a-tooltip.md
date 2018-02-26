@@ -64,7 +64,7 @@ The pieces of information we now need from the element are:
 - the actual data 
 - its current cx & cy coordinates
 
-The data can be enumerated using the elements .datum() method and the coordinates using .attr().
+The data can be enumerated using the element's .datum() method, and the coordinates using .attr().
 
 ```
 const d = selection.datum()
@@ -72,10 +72,10 @@ const cx = +selection.attr("cx")
 const cy = +selection.attr("cy")
 ```
  
-The last thing that needs to be done in order to render the tooltip are the following:
+The last three things that need to be done in order to render the tooltip are the following:
 
 - append a div with the previous html
-- position it using the cx\cy coords
+- position it using the cx/cy coords
 - update html to replace color and values
 
 Creating and positioning the tooltip is fairly easy and is done as follows:
