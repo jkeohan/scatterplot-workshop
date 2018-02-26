@@ -120,7 +120,7 @@ function renderLegend(legendValues) {
 }
 ```
 
-With our container elements in place, it's time to do some data binding and add the rect and text elements. We're going to use additional g elements as a wrapper for both the rect and text, which provides the ability to move them both together as a group instead of each one individually. Scales aren't being used either so we are going to use a multiple of the index value to position the g elements along the y axis. 
+With our container elements in place, it's time to do some data binding and add the rect and text elements. We're going to use additional g elements as a wrapper for both the rect and text, which provides the ability to move them both together as a group instead of each one individually. Scales aren't being used either, so we are going to use a multiple of the index value to position the g elements along the y axis. 
 
 ```
 const legendItems = legend
