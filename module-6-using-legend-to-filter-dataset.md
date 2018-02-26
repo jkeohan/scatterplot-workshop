@@ -6,6 +6,8 @@ The starter code for this section has been provided so please fork the following
 
 [D3 - Scatterplot - Legend (Interactive) - Starter](https://codepen.io/jkeohan/pen/vddbmG)
 
+### Intro 
+
 Although animations almost always enhance the end user experience they should be applied based on end user expectations.  Users that have already worked with interactive data visualizations expect that some functionality be provided that allows them to filter the data set. The most intuitive way to do this in our current scatterplot would be to click on the legend values so that is where we will be implemented. 
 
 The user iteraction with the legend that we were looking to implement in this scenario will involve the user clicking on one legend item which rerender of the scatterplot displaying only those countries from the choosen region.   The user can click additional regions which will once again filter the data set and cause a rerender.  One thing to consider is how to get the user back to viewing all the regional data.  In order to make that happen the user will only need to click the same region a second time.  Hopefully this will be an intuitive choice but if not we can always provide a **reset** button or link that would provide a clear and direct path to reseting the scatterplot. 
@@ -19,7 +21,8 @@ Here is a breakdown of the steps we will perform to implement the filtering and 
 - Add **.onclick** event to legendItems that will call a new function called **filterByRegion** and store the results in the **region** variable
 - Create the **filterByRegion** function that will return a new array of cities filtered by region
 - Create a new function called **legendTranstion** that will transition the opacity of the legend items to indicate which one is active 
-- Call the **render** function passing it the filtered dataset
+- Call the **render** function passing it the newly filtered dataset.
+- Update the **render** function to transition the circles from their current to their new position. 
 
 
 #### Adding onclick Event
@@ -111,6 +114,34 @@ function legendTransition(region) {
 }
 ```
 
+#### Updating The Render Function 
+
+As the render function is presently configured all the circles are redrawn with every update.  A much better idea is to transition the ones that are filtered from their current to their new position once the axes are redrawn. 
+
+To do this first requires one small change to how we bound the data initially. D3's default data binding is done based on position and not on the actual values inside the array.  That is unless we use the callback function to tell it to do so, as such:
+
+```
+let group = svg.selectAll("circle").data(data, d => d["Location"]);
+```
+
+
+Now we need to separate the updated items and retrieve their current cx\cy positions. To do this we will rereference the group variable again which segments these items for updating and use d3.select(this) to reference the current items cx\cy values. Once this is done we can then transition them to their new position. 
+
+```
+  group
+    .attr("cx", function(d, i) {
+      return d3.select(this).attr("cx");
+    })
+    .attr("cy", function(d, i) {
+      return d3.select(this).attr("cy");
+    })
+    .transition()
+    .duration(500)
+    .attr("cx", (d, i) => xScale(d["2002"]))
+    .attr("cy", (d, i) => yScale(d["2012"]))
+    .attr("opacity", 1);
+```
+
 #### CodePen Solution Code
 
 Here is the full solution code for the project thus far:
@@ -118,6 +149,12 @@ Here is the full solution code for the project thus far:
 [D3 - Scatterplot - Legend (Interactive) - Solution](https://codepen.io/jkeohan/pen/KQRKGj?editors=0010)
 
 ### Extending Filtering To Mouseover\Mouseout Events
+
+#### Starter CodePen 
+
+Here is the starter code:
+
+[D3 - Scatterplot - Legend (Interactive) - Legend Opacity - Starter ](https://codepen.io/jkeohan/pen/VQGBvR?editors=0010)
 
 One addition we can add to the legend to enhance the user experience is to allow them to temporarily lower the opacity of the other data points which would highlight the ones chosen. 
 
