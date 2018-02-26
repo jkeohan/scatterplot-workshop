@@ -100,7 +100,7 @@ All that's left now is to add the html and dynamically replace the following:
 - d3tooltiphr border color
 - values for both 2002 and 2012
 
- The **d** variable defined earlier is an object that contains the data needed to replace the static values and of course a transition has been added for aesthetics:
+ The **d** variable defined earlier is an object that contains the data needed to replace the static values and, of course, a transition has been added for aesthetics:
  
  ```
   const tooltip = d3.select(".regionalstats").append("div").attr("class","d3tooltip")
@@ -119,7 +119,7 @@ All that's left now is to add the html and dynamically replace the following:
   tooltip.append('span').attr('class','value').html(`${d['2012']}%`)
  ```
 
-Of course a smooth transition is what we're looking for, so one more line is all we need to change its opacity.
+Of course, a smooth transition is what we're looking for, so one more line is all we need to change its opacity.
 
 ```
 tooltip.transition().duration(1000).style("opacity",1)
@@ -127,7 +127,7 @@ tooltip.transition().duration(1000).style("opacity",1)
 
 #### Removing the Tooltip
 
-I suppose the last thing needed is to remove the tooltip on **mouseout**.  Create the following function and add it as the last line to the mouseout function.
+The last thing needed is to remove the tooltip on **mouseout**.  Create the following function and add it as the last line to the mouseout function.
 
 ```
 function removeToolTip(){
