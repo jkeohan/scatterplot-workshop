@@ -90,7 +90,7 @@ tooltip
     .style("top", (cy + 30) + "px") 
 ```
 
-Opacity was added so that we have something to transition. The extra values added to both cx\cy are done so that the tooltip is positioned right and vertically centered with the element. 
+Opacity was added so that we have something to transition. The extra values added to both cx/cy is done so that the tooltip is positioned right and vertically centered with the element. 
 
 
 #### Refactoring the HTML to be Dynamic
