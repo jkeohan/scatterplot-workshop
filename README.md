@@ -6,7 +6,7 @@ Here's a breakdown of the steps we'll be covering:
 
 #### Module 1: Importing Data & Rendering Circles
 
-We'll cover the basics of D3 and how it can be used to create basic shapes. We then use it to import data and render those data points as circles. 
+We'll cover the basics of D3 and how it can be used to create basic shapes. We'll then use it to import data and render those data points as circles. 
 
 
 #### Module 2: Adding X & Y Scales\Axes
