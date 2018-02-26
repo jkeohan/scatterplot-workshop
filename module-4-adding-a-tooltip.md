@@ -4,7 +4,7 @@ The starter code for this section has been provided so please fork the following
 
 **Starter Code:** [D3 - Scatterplot - ToolTip - Starter](https://codepen.io/jkeohan/pen/wyWjXq)
 
-Tooltips help elicit additional information about a specific data point. In the case of the scatterplot it will be used to show the percent output of the country for years 2002 & 2012.  It can, however, to be extended and show all the years and their corresponding values as a table or even a mini bar chart.  When approaching the design one should always consider what information would be most relevant and\or useful to the user as they investigate the data. 
+Tooltips help elicit additional information about a specific data point. In the case of the scatterplot it will be used to show the percent output of the country for years 2002 & 2012.  It can, however, be extended to show all the years and their corresponding values as a table or even a mini bar chart.  When approaching the design one should always consider what information would be most relevant and/or useful to the user as they investigate the data. 
 
 Adding a tooltip will require that we do the following:
 
@@ -15,11 +15,11 @@ Adding a tooltip will require that we do the following:
 
 ### Implement the Tooltip design 
 
-The design were looking to implement is the following:
+The design we're looking to implement is the following:
 
 <img src="http://res.cloudinary.com/jkeohan/image/upload/v1518555150/Screen_Shot_2018-02-13_at_3.45.45_PM_yada2o.png" width="150" />
 
-Since recreating the above design would add additional time to the tutorial, the following [CodePen](https://codepen.io/jkeohan/pen/wyqpPj) has been provided with all the required HTML\CSS. It will however require some editing to be dynamic and show the info specific to that element. 
+Since recreating the above design would add additional time to the tutorial, the following [CodePen](https://codepen.io/jkeohan/pen/wyqpPj) has been provided with all the required HTML\CSS. It will, however, require some editing to be dynamic and show the info specific to that element. 
 
 Let's first use the below static html to get a tooltip up and running and then we will refactor to make it dynamic.  
 
@@ -34,7 +34,7 @@ Let's first use the below static html to get a tooltip up and running and then w
 
 #### Adding the displayToolTip function
 
-With the basic template in place we can now create the function responsible for generating the tooltip. We will create the basic function for now, add a console.log to confirm it's receiving the circle element and then slowly expand on it to include the additional elements as needed. 
+With the basic template in place we can now create the function responsible for generating the tooltip. We will create the basic function for now, add a console.log to confirm it's receiving the circle element, and then slowly expand on it to include the additional elements as needed. 
  
 Here is the basic structure:
 
@@ -62,7 +62,7 @@ Mousing over a circle now will console.log the element, so let's take a look and
 The pieces of information we now need from the element are:
 
 - the actual data 
-- it's current cx & cy coordinates
+- its current cx & cy coordinates
 
 The data can be enumerated using the elements .datum() method and the coordinates using .attr().
 
@@ -72,7 +72,7 @@ const cx = +selection.attr("cx")
 const cy = +selection.attr("cy")
 ```
  
-The last thing that needs to be done are in order to render the tooltip are the following:
+The last thing that needs to be done in order to render the tooltip are the following:
 
 - append a div with the previous html
 - position it using the cx\cy coords
@@ -119,7 +119,7 @@ All that's left now is to add the html and dynamically replace the following:
   tooltip.append('span').attr('class','value').html(`${d['2012']}%`)
  ```
 
-Of course a smooth transition is what were looking for so one more line is all we need to change it's opacity.
+Of course a smooth transition is what we're looking for, so one more line is all we need to change its opacity.
 
 ```
 tooltip.transition().duration(1000).style("opacity",1)
