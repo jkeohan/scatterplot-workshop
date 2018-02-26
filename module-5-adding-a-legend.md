@@ -28,7 +28,7 @@ Since our goal is to assign colors to each legend item we also need to add a col
 const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
 ```
 
-Finally we append the svg and set its width and height.
+Finally, we append the svg and set its width and height.
 
 ```
 const svg = chart
