@@ -6,7 +6,7 @@ Here is the starter code we will use for this section for the time being, in ord
 
 One important feature of any visualization is the ability to quicky associate the data based on a related property value.  Thus far, the scatterplot has, in part, achieved this by assigning the countries a specific color based on their region. This relationship, however, has not yet been conveyed to the user and a legend is the best way to quickly establish this association. 
 
-### Append An SVG
+### Append an SVG
 
 The first thing we need to do is grab the DOM element where we will append the svg.
 
@@ -36,7 +36,7 @@ const svg = chart
   .attrs({ height, width });
 ```
 
-### Extracting Region Values From Dataset
+### Extracting Region Values from Dataset
 
 Each item in the existing dataset array is an object with key/value pairs. The key that stores the values we need is called: **Region**.
 
@@ -110,7 +110,7 @@ function renderValues(data) {
 }
 ```
 
-### Creating The renderLegend Function
+### Creating the renderLegend Function
 
 Let's create the renderLegend function. Its first task will be to append a **g** element to the svg with a class of **legend**.
 
@@ -134,7 +134,7 @@ const legendItems = legend
   });
 ```
 
-#### Appending The Rect and Text Elements
+#### Appending the Rect and Text Elements
 
 Appending the rect and text elements is pretty straightforward. We're going to use colorScale to assign a unique color to each rectangle. 
 
@@ -232,13 +232,13 @@ Here is the full solution for the vertical legend:
 [D3 - Vertical Legend - Solution](https://codepen.io/jkeohan/pen/oEEvJB?editors=0010)
 
 
-### Applying The Legend To Scatterplot
+### Applying the Legend to Scatterplot
 
 Now it's time to apply the legend to the scatterplot.  We will be working with the below starter code for the scatterplot so please fork the following codepen and then we will begin: 
 
 **Starter Code:** [D3 - Scatterplot - Legend - Starter](https://codepen.io/jkeohan/pen/qxXRzB)
 
-#### Making Room For The Legend
+#### Making Room for the Legend
 
 In order to make room for the legend the svg width needs to be increased while still maintaining the chart's existing width.  To do this, the svg width has already been increased in CSS from 400 => 600px.  
 
