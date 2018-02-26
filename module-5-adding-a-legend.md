@@ -101,7 +101,7 @@ const legendValues = d3.set(
 // legendValues => ["Asia", "Europe", "Latin America", "Scandanavia", "Africa",...]
 ```
 
-Only one last line needs to be added which will call the function reponsbible for rendering the actual legend.  It is called **renderLegend** and will be passed  **legendValues**.
+Only one last line needs to be added which will call the function responsible for rendering the actual legend.  It is called **renderLegend** and will be passed  **legendValues**.
 
 ```
 function renderValues(data) {
