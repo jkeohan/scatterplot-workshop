@@ -8,7 +8,7 @@ Tooltips help elicit additional information about a specific data point. In the 
 
 Adding a tooltip will require that we do the following:
 
-- Implement the tooltip design using HTML\CSS
+- Implement the tooltip design using HTML/CSS
 - Create a **displayToolTip** function to render the tooltip
 - Extend **mouserOver** function to call the displayToolTip function
 - Extend the **mouseOut** function to remove the tooltip
