@@ -13,7 +13,7 @@ Adding a tooltip will require that we do the following:
 - Extend **mouserOver** function to call the displayToolTip function
 - Extend the **mouseOut** function to remove the tooltip
 
-### Implement the Tooltip design 
+### Implement the Tooltip Design 
 
 The design we're looking to implement is the following:
 
@@ -32,7 +32,7 @@ Let's first use the below static html to get a tooltip up and running and then w
 </div>  
 ```  
 
-#### Adding the displayToolTip function
+#### Adding the displayToolTip Function
 
 With the basic template in place we can now create the function responsible for generating the tooltip. We will create the basic function for now, add a console.log to confirm it's receiving the circle element, and then slowly expand on it to include the additional elements as needed. 
  
@@ -93,7 +93,7 @@ tooltip
 Opacity was added so that we have something to transition. The extra values added to both cx/cy is done so that the tooltip is positioned right and vertically centered with the element. 
 
 
-#### Refactoring the HTML to be Dynamic
+#### Refactoring the HTML to Be Dynamic
 
 All that's left now is to add the html and dynamically replace the following:
 
