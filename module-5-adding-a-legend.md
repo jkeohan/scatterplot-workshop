@@ -1,10 +1,10 @@
 ## Adding A Legend - (EST: 60 min)
 
-Here is the starter code for this section that we will use for the time being in order to focus on creating just the legend.  Once this has been completed we will reimplement the legend in the context of the scatterplot.
+Here is the starter code we will use for this section for the time being, in order to focus on creating just the legend.  Once this has been completed we will reimplement the legend in the context of the scatterplot.
 
 **Starter Code:** [D3 - Vertical Legend - Starter](https://codepen.io/jkeohan/pen/qxYeNj?editors=0010)
 
-One important feature of any visualization is the ability to quicky associate the data based on a related property value.  Thus far the scatterplot has, in part, achieved this by assigning the countries a specific color based on their region. This relationship however has not yet been conveyed to the user and a legend is the best way to quickly establish this association. 
+One important feature of any visualization is the ability to quicky associate the data based on a related property value.  Thus far, the scatterplot has, in part, achieved this by assigning the countries a specific color based on their region. This relationship, however, has not yet been conveyed to the user and a legend is the best way to quickly establish this association. 
 
 ### Append An SVG
 
@@ -14,7 +14,7 @@ The first thing we need to do is grab the DOM element where we will append the s
 const chart = d3.select(".chart");
 ```
 
-In order to add some responsiveness to the svg we will set it's height\width to that elements defined width\height. D3 uses the .node() method to grab that elements properties and then we can use .clientWidth & .clientHeight to obtain those respective values. 
+In order to add some responsiveness to the svg we will set its width/height to that element's defined width/height. D3 uses the .node() method to grab that element's properties and then we can use .clientWidth & .clientHeight to obtain those respective values. 
 
 ```
 const node = chart.node();
@@ -28,7 +28,7 @@ Since our goal is to assign colors to each legend item we also need to add a col
 const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
 ```
 
-Finally we append the svg and set it's height and width.
+Finally we append the svg and set its width and height.
 
 ```
 const svg = chart
@@ -38,7 +38,7 @@ const svg = chart
 
 ### Extracting Region Values From Dataset
 
-Each item in the existing dataset array is an object with key\value pairs and the key that stores the values we need is called: **Region**.
+Each item in the existing dataset array is an object with key/value pairs. The key that stores the values we need is called: **Region**.
 
 Let's create a new function called **renderLegend** that takes in our current dataset and console logs it to confirm it's working.
 
@@ -48,7 +48,7 @@ function renderLegend(data) {
 }
 ```
 
-Now inside of the **getData** function let's add the function to the if\else statement. 
+Now inside of the **getData** function let's add the function to the if/else statement. 
 
 ```
 if (storage) {
@@ -62,7 +62,7 @@ if (storage) {
 }
 ```
 
-The output is something we've already seen in the previous iterations of the scatterplot however i've removed the years from 2003 - 2011 to keep it concise.
+The output is something we've already seen in the previous iterations of the scatterplot, however, I removed years 2003-2011 to keep it concise.
 
 ```
 {2002: "0.4", 2012: "0.7", Location: "Korea", Region: "Asia"}
@@ -86,7 +86,7 @@ const legendValues = d3.set(
 // legendValues => {$Asia: "Asia", $Europe: "Europe", $Latin America: …}
 ```
 
-Although the key\value pairs are unique it's not in an array format the d3 expects.  A few additional method that we can append will be **.value()** to return an array of unique values and **.sort()** to sort them in alphabetical order.
+Although the key/value pairs are unique, it's not in an array format the d3 expects.  A few additional methods that we can append will be **.value()** to return an array of unique values, and **.sort()** to sort them in alphabetical order.
 
 
 ```
@@ -101,7 +101,7 @@ const legendValues = d3.set(
 // legendValues => ["Asia", "Europe", "Latin America", "Scandanavia", "Africa",...]
 ```
 
-Only one last line needs to be added which will call the function reponsbible for renering the actual legend.  It is called **renderLegend** and will be passed  **legendValues**.
+Only one last line needs to be added which will call the function reponsbible for rendering the actual legend.  It is called **renderLegend** and will be passed  **legendValues**.
 
 ```
 function renderValues(data) {
@@ -112,7 +112,7 @@ function renderValues(data) {
 
 ### Creating The renderLegend Function
 
-Let's create the renderLegend function and it's first task will be to append a **g** element to the svg with a class of **legend**
+Let's create the renderLegend function. Its first task will be to append a **g** element to the svg with a class of **legend**.
 
 ```
 function renderLegend(legendValues) {
@@ -120,7 +120,7 @@ function renderLegend(legendValues) {
 }
 ```
 
-With our container elements in place it's time to do some data binding and add the rect and text elements. Were going to use additional g elements as a wrapper for both the rect and text which provides the ability to move them both together as a group instead of each one individually. Scales aren't being used either so we were going to use a multiple of the index value to position the g elements along the y axis. 
+With our container elements in place, it's time to do some data binding and add the rect and text elements. We're going to use additional g elements as a wrapper for both the rect and text which provides the ability to move them both together as a group instead of each one individually. Scales aren't being used either so we are going to use a multiple of the index value to position the g elements along the y axis. 
 
 ```
 const legendItems = legend
@@ -136,7 +136,7 @@ const legendItems = legend
 
 #### Appending The Rect and Text Elements
 
-Appending the rect and text elements are pretty straightforward and were going to use colorScale to assign a unique color to the each rectangle. 
+Appending the rect and text elements is pretty straightforward. We're going to use colorScale to assign a unique color to each rectangle. 
 
 ```
 legendItems.append("rect")
@@ -240,7 +240,7 @@ Now it's time to apply the legend to the scatterplot.  We will be working with t
 
 #### Making Room For The Legend
 
-In order to make room for the legend the svg width needs to be increased while still maintaining the charts existing width.  To do this the svg width has already been increased in CSS from 400 => 600px.  
+In order to make room for the legend the svg width needs to be increased while still maintaining the chart's existing width.  To do this, the svg width has already been increased in CSS from 400 => 600px.  
 
 Now we reset the chart width by increasing the right margin:
 
@@ -254,7 +254,7 @@ const m = { left: 80, right: 150, top: 20, bottom: 70 };
 
 #### Adding Supporting Functions
 
-Since the functions needed to generate a legend have already been created all we need to do now is copy\paste them below the render function and then call the **legendData** function inside the **getData** function.
+Since the functions needed to generate a legend have already been created, all we need to do now is copy/paste them below the render function and then call the **legendData** function inside the **getData** function.
 
 ```
 // DISPLAY LEGEND
@@ -268,7 +268,7 @@ function renderLegend(legendValues, data) {
 // Remember to add legendData to getData so that it's initially run on first render
 ```
 
-At this point the legend should have been drawn with the colors conveying the relationship between the circles and their corresponding region. 
+At this point, the legend should have been drawn with the colors conveying the relationship between the circles and their corresponding region. 
 
 #### CodePen Solution Code
 
