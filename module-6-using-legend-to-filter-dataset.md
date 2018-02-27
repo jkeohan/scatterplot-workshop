@@ -44,24 +44,17 @@ let legendItems = legend
 
 #### Creating The filterByRegion Function
 
-Clicking on any legend items at this point will display an error in the console being that the filterByRegion function has not yet been created so let's add it as the last line of **renderLegend** function.
+Clicking on any legend items at this point will display an error in the console being that the filterByRegion function has not yet been created so let's add it as the last line of **renderLegend** function and add some pseudocode.
 
 ```
 function filterByRegion(data, region) {
- 
+ // if activelenend is already set to the region reset it to an empty string
+ // and return the whole dataset
+ // else set activelegend to region and filter\return new dataset
 }
 ```
 
-The function will need to run some conditonal logic to first determine if the activeLegend variable has already been set to the current choice and if so do the folowing:
-
-1.  reset activeLegend to an empty string 
-2.  return the whole data set. 
-
-If not then do the following:
-
-1. filter the data set based on the region choice
-2. set the activeLegend variable to that region
-3. return the filtered data set
+With the steps thought out let's translate that into code:
 
 
 ```
