@@ -70,9 +70,9 @@ function filterByRegion(data, region) {
     activeLegend = "";
     return data;
     } else {
-      let filteredData = data.filter(d => d["Region"] == region);
-      activeLegend = region;
-      return filteredData;
+       let filteredData = data.filter(d => d["Region"] == region);
+       activeLegend = region;
+       return filteredData;
     }
 }
 ```
