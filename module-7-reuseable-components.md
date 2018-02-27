@@ -91,7 +91,7 @@ function renderLegend(legendValues) {
 
 #### Solution CodePen 
 
-Here is the starter code for the vertical legend using d3-legend:
+Here is the solution code for the vertical legend using d3-legend:
 
 [D3 - Vertical Legend - D3-Legend - Solution](https://codepen.io/jkeohan/pen/rJZaYN?editors=0010)
 
