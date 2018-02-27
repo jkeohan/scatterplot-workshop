@@ -1,4 +1,4 @@
-## Reusable Components
+## Reusable Components - (EST: 30 min)
 
 D3V4 is a collection of modules that are designed to work together; you can use the modules independently, or you can use them together as part of the default build.  The modules include components that provide the user a degree of reusability.  The D3 community has also extended this concept by creating additional components that facilitate creating elements such as tooltips, legends, maps, ect...
 
@@ -97,7 +97,7 @@ Here is the starter code for the vertical legend using d3-legend:
 
 ### Creating Our First Reusable Component 
 
-I'm sure by now you've come to the conclusion that it's much easier to incorporate a reusable legend then create your own from scratch.  With that in mind let's take a step back and create our own reusable legend.
+I'm sure by now you've come to the conclusion that it's much easier to incorporate a reusable legend then create your own from scratch and with that in mind let's take a step back and create our own reusable legend.
 
 #### Starter CodePen 
 
@@ -109,5 +109,4 @@ Here is the starter code for the vertical legend using d3-legend:
 
 - [d3-legend](http://d3-legend.susielu.com/#color-ordinal)
 - [d3-shape](https://github.com/d3/d3-shape)
-- https://bl.ocks.org/feyderm/4d143591b66725aed0f1855444752fd9
-- [d3noob.org](http://www.d3noob.org/2014/02/styles-in-d3js.html)
+- [dragging d3 shapes](https://bl.ocks.org/feyderm/4d143591b66725aed0f1855444752fd9)

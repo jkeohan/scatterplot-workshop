@@ -8,7 +8,6 @@ Here's a breakdown of the steps we'll be covering:
 
 We'll cover the basics of D3 and how it can be used to create basic shapes. We then use it to import data and render those data points as circles. 
 
-
 #### Module 2: Adding X & Y Scales\Axes
 #### Module 3: Adding Circle & Line Transitions
 #### Module 4: [Adding A Tooltip](module-4-adding-a-tooltip.md) 

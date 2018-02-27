@@ -1,4 +1,4 @@
-## Filtering Data Based On Legend Choice 
+## Filtering Data Based On Legend Choice - (EST: 60 min)
 
 #### CodePen Solution 
 
