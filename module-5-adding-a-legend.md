@@ -264,8 +264,26 @@ function legendData(data) {
 function renderLegend(legendValues, data) {
     //...renderLegend code
 }
+```
 
-// Remember to add legendData to getData so that it's initially run on first render
+We need this to run the first time the script loads so let's configure the getData function to run legendData in both the if\else statements. 
+
+```
+  if (storage) {
+    storage = JSON.parse(storage)
+    storage.sort(function(x, y){
+        return d3.ascending(x['2002'], y['2002'] );
+       })
+    legendData(storage)
+    render(storage);
+   
+  } else {
+    d3.csv(url, function(data) { 
+     localStorage.setItem("countries", JSON.stringify(data));
+      legendData(data)
+      render(data);
+    });
+  }
 ```
 
 At this point, the legend should have been drawn with the colors conveying the relationship between the circles and their corresponding region. 
