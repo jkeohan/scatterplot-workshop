@@ -298,3 +298,7 @@ Here is the full solution code for the project thus far:
 
 - [d3-legend](http://d3-legend.susielu.com/#color-ordinal)
 - [d3noob.org](http://www.d3noob.org/2014/02/styles-in-d3js.html)
+
+### Next Lesson
+
+[Filtering Data Based On Legend Choice](https://github.com/jkeohan/scatterplot-workshop/blob/master/module-6-using-legend-to-filter-dataset.md)
