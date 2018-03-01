@@ -12,4 +12,4 @@ The starter code for this section has been provided so please fork the following
 
 Here is the full solution code for the project thus far:
 
-[D3 - Scatterplot - Rendering Data - Solution ](## Importing And Rendering Data https://codepen.io/jkeohan/pen/dWbmOM)
+[D3 - Scatterplot - Rendering Data - Solution ](https://codepen.io/jkeohan/pen/dWbmOM)
