@@ -101,6 +101,11 @@ getData()
 function getData(data) {...}
 ```
 
+#### Solution Code
+
+Here is the full solution code for the project thus far:
+
+[D3 - Scatterplot - Importing Data - Solution ](https://codepen.io/jkeohan/pen/XZGjVV?editors=0010)
 
 #### Additional Resources
 
