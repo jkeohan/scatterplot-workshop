@@ -2,7 +2,7 @@
 
 The starter code for this section has been provided so please fork the following codepen: 
 
-**Starter Code:** [D3 - Scatterplot - Rendering Data - Starter](https://codepen.io/jkeohan/pen/RQPEox?editors=0010)
+**Starter Code:** [D3 - Scatterplot - Importing Data - Starter](https://codepen.io/jkeohan/pen/RQPEox)
 
 D3's main focus is rendering charts and graphs that represent one or more data sets. Sometimes the data can be generated on the spot like using an array of numbers to render circles but most of the time D3 first needs to import,  parser and format data before it can render it in the form and shape dictated by the visualization  D3 comes with several convenience methods that support importing data such as:
 
@@ -84,7 +84,7 @@ function getData() {
     render(data);
   } else {
     d3.csv(url).then((data) => {
-      localStorage.setItem("countries", data );
+      localStorage.setItem("countries", JSON.stringify(data));
        render(data);
     }) 
   }
@@ -96,6 +96,9 @@ As we review the function we notice there is a render function being called howe
 function render(data) {
   console.log('this is render ', data)
 }
+
+getData()
+function getData(data) {...}
 ```
 
 
