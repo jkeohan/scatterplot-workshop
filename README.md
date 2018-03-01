@@ -14,7 +14,7 @@ In this module we will cover the basics of using several D3 convenience methods 
 
 #### Module 2: Rendering Circles - 60min
 
-In this module we will use D3 to create basic shapes and examine some additional modules that provide reusable shapes. 
+In this module we will use D3 to create basic shapes manually and then work with the d3-shape module to implement additional shapes as well.  
 
 #### Module 2: Adding X & Y Scales\Axes
 #### Module 3: Adding Circle & Line Transitions
