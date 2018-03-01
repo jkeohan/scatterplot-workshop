@@ -4,9 +4,17 @@ This is a full day tutorial on building a scatterplot using D3. It explores key 
 
 Here's a breakdown of the steps we'll be covering: 
 
-#### Module 1: Importing Data & Rendering Circles
+#### Module 0: Intro To D3 
 
-We'll cover the basics of D3 and how it can be used to create basic shapes. We'll then use it to import data and render those data points as circles. 
+Not created yet....
+
+#### Module 1: [Importing Data](module-1-importing-data.md) - 30min 
+
+In this module we will cover the basics of using several D3 convenience methods to import data.  The native d3.csv method will be reviewed as well as additional modules such as 
+
+#### Module 2: Rendering Circles - 60min
+
+In this module we will use D3 to create basic shapes and examine some additional modules that provide reusable shapes. 
 
 #### Module 2: Adding X & Y Scales\Axes
 #### Module 3: Adding Circle & Line Transitions
