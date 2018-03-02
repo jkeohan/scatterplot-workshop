@@ -51,16 +51,41 @@ const m = { left: 20, right: 150, top: 20, bottom: 20 };
 
 The left and bottom values are so that we make space for the x\y axis text. The top is to create some distance from the parent div but the largest values of 150 is meant to provide the space needed to add the legend to the right of the scatterplot. 
 
-The svg that will contain our visualization will be appended to a div with a class of ".scatterplot" so let's use d3 to grab that element from the DOM using **d3.select()**.
+The svg that will contain our visualization will be appended to a div with a class of ".scatterplot" so let's use d3 to grab that element from the DOM using **d3.select()**.  Once it's grabbed we will also console.log() the output. 
 
 ```
 const scatterplot = d3.select(".scatterplot");
+console.log('this is scatterplot:', scatterplot);
+
+// => pt {_groups: Array(1), _parents: Array(1)}
 ```
 
-As part of the responsive design we want to create append an svg that uses the width and height of it's parent as it's values as well.  D3 provides the **.node()** method to obtain the properties of a DOM element so let's add that as well. 
+The console output shows how D3 stores the data anytime .select() is used. It's clearly aware of the elements themselves as well as the parent element.  If we examine it a bit further we can see all of it's properties. 
+
+Now as part of the responsive design layout we want to append an svg that uses the width and height of it's parent so that's an additional set that needs to be performed before we draw the svg.  D3 provides the **.node()** method to obtain the properties of a DOM element so let's add that and console.log the results.
 
 ```
-let node = scatterplot.node()
+let node = scatterplot.node();
+console.log('this is node: ', node);
+
+// => <div class="scatterplot"></div>
+```
+
+The output is very different from .select() and shows the full html element but none of it's properties.  Although visually this is the case we can access all the property values that we saw when using .select(), such as **clientWidth** and **clientHeight**.  I prefer storing those 2 values as a collection (array) and then create new variables that will reference them when needed. 
+
+```
+let svgDimensions = [node.clientWidth, node.clientHeight];
+let svgWidth = svgDimensions[0];
+let svgHeight = svgDimensions[1];
+```
+
+Now it's just a matter of appending an svg and assigning it a width and height. 
+
+```
+let svg = d3
+  .select(".scatterplot")
+  .append("svg")
+  .attrs({ width: svgWidth, height: svgHeight })
 ```
 
 #### Solution Code
