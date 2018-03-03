@@ -30,8 +30,10 @@ Here is a list of the functionality that has been implemented:
 
 The objective of this module isn't to implement all the functionality defined above but to both structure our code in such a way that takes into consideration our final design. We will focus on the following specifically:
 
--  render just the circles
--  make the design responsive
+- implement a responsive design
+- append an svg and g elements
+- render the data as the circles
+
 
 We are going to be writing quite of bit of code in this module and it will fall into several buckets:
 
@@ -41,9 +43,9 @@ We are going to be writing quite of bit of code in this module and it will fall 
 
 Let's start with the code that only runs once on page load. 
 
-#### Code On Page Load
+#### Code Run On Page Load Only
 
-Something that you will see quite often in the code used to build out a D3 desing is defining values that we can use to position our g elements.  So let's create a new const variable and assign some values. 
+Several elements are going to be defined that need to key to both support generating the svg\g elements but also for our need to scale the data to readjust according to our responsive design.  Something that you will see quite often in the code used to build out a D3 desing is defining values that we can use to position our g elements.  So let's create a new const variable and assign some values. 
 
 ```
 const m = { left: 20, right: 150, top: 20, bottom: 20 };
@@ -57,7 +59,7 @@ The svg that will contain our visualization will be appended to a div with a cla
 const scatterplot = d3.select(".scatterplot");
 console.log('this is scatterplot:', scatterplot);
 
-// => pt {_groups: Array(1), _parents: Array(1)}
+// => pt {_groups: Array(1), _parents: Array(1)}
 ```
 
 The console output shows how D3 stores the data anytime .select() is used. It's clearly aware of the elements themselves as well as the parent element.  If we examine it a bit further we can see all of it's properties. 
@@ -82,14 +84,152 @@ let svgHeight = svgDimensions[1];
 Now it's just a matter of appending an svg and assigning it a width and height. 
 
 ```
-let svg = d3
-  .select(".scatterplot")
-  .append("svg")
+let svg = scatterplot.append("svg")
   .attrs({ width: svgWidth, height: svgHeight })
 ```
+
+Once that is done we should see an svg that is the width\height assigned to the scatterplot in css. A black border was previously added in css for the svg so that we can clearly make out it's dimensions. 
+
+Although we could create all our elements directly within the svg a much better approach is to group them using g elements.  That allow us to move whole segments of elements at once vs defining those new coordinates per element. So let's add our two supporting g elements, one for the circles and the other for the legend. 
+
+```
+let width = svgWidth - (m.left + m.right);
+let height = svgHeight - (m.top + m.bottom);
+
+let gMain = svg.append("g").attr('class','gMain')
+
+let gScatter = gMain.append("g").attr('class','gScatter')
+    .attr("transform", "translate(" + m.left + "," + m.top + ")");
+
+let gLegend = gMain.append("g").attr('class','gLegend')
+    .attr("transform", "translate(" + width + "," + m.top + ")");
+```
+
+Were only going to add a few more lines of code that are needed to generate and position the circles and they are both scales.
+
+```
+let colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+let xScale = d3.scaleLinear()
+let yScale = d3.scaleLinear()
+```
+
+D3 has many different types of [scales](https://github.com/d3/d3-scale) and they could be the topic of their own module so we won't get into the finer concepts of scales but only the two that we have defined above. The two scales defined are **scaleLinear()** and **scaleOrdinal()**.  A linear scale was assigned to the x\y axes as this represents a continuous that  maps a quantitative input domain to a continuous output range.  An ordinal scale was assigned to the legend as it represents an explicit mapping from a set of data values to a corresponding set of visual attributes (such as colors). We will see them both in action shortly so be patient. 
+
+#### Code To Render Data
+
+In module 1 we created the **render** function which we used only to view the data via the console but now it's time to draw those data points as circles.  The first thing we need to do is determine what the max value of all circles for years 2002 and 2012 in the current data set.  Let's keep in mind that these values will change as the original data set is filtered based on region so it's something that needs to be run everytime we render the circles. Those values will them be passed onto the scales to proportionately draw the data.  
+
+```
+const maxX = d3.max(data, d => +d["2002"]);
+const maxY = d3.max(data, d => +d["2012"]);
+```
+
+Now that we have those values let's pass them to the x\y scale as well as set the range of available space to draw the data.  Scales use **.domain()** for the actual data and **.range()** for the available space.  
+
+```
+xScale.domain([0, maxX]).range([0, width]);
+yScale.domain([0, maxY]).range([height, 0]);
+```
+
+Now it's time to draw the circles.  D3 is know for it's ability to bind to data and keep track of new data entering, existing data needing updating and data that needs to be removed otherwise refernced as it's Enter\Update\Exit cycle.  The initial data binding process is done by selecting all the elements and then using **.data()** to bind to the data set. 
+
+```
+// DATA BINDING
+let circles = gScatter.selectAll("circle").data(data);
+```
+
+After data binding has been done it's time to have the circle enter using **.enter()**
+
+```
+// ENTER PHASE
+const circlesEnter = circles.enter().append("circle")
+```
+
+However circles in an svg require a cx,cy and r values to be drawn so let's add that as well.
+
+```
+const circlesEnter = circles.enter().append("circle")
+	.attrs({
+	  cx: (d, i) => xScale(d["2012"]),
+	  cy: (d, i) => yScale(d["2002"]), 
+	  r:5
+	 })
+```
+
+Although the circles are drawn there is no way to distinquish which circle are related so we need to assign a few more properties such as: **stroke**, **stroke-width** and **fill**.
+
+```
+const circlesEnter = circles.enter().append("circle")
+	.attrs({
+	  cx: (d, i) => xScale(d["2012"]),
+	  cy: (d, i) => yScale(d["2002"]), 
+	  r:5,
+     'stroke-width':1, 
+      stroke: 'rgba(230,230,230, .8)',
+      'fill': d => colorScale(d.Region)
+    })
+```
+
+Even though were not presently filtering the data set we are going to handle updating cirlces when the time comes.
+
+```
+const circlesUpdated = circlesEnter.merge(circles)
+	.attrs({
+	  cx: (d, i) => xScale(d["2012"]),
+	  cy: (d, i) => yScale(d["2002"]), 
+    })
+``` 
+
+#### Code For Responsiveness
+
+The last bit of code needed is to handle window resize.  This requires that we do the following:
+
+- add an event listener to the window
+- create a function that is called when the event is fired
+
+
+D3 uses the same method to select the window as it does any other dom element and then listens for when **resize** event is fired and then calls a function.
+
+```
+d3.select(window).on('resize', resize)
+```
+
+The **resize** function needs to determine the current width\height of it's parent and then update the svg and g elements with their new sizes. The **node** variable that we defined globaly plays the part of event listener as well.  It's properties are updated dynamically as the scatterplot dimensions ajdust so we will update the **svgDimensions** variable along with the  **svgWidth**, **svgHeight**, **height** and **width** variables as well.  
+
+```
+function resize() {
+ svgDimensions = [node.clientWidth, node.clientHeight]
+ svgWidth = svgDimensions[0];
+ svgHeight = svgDimensions[1];
+ width = svgDimensions[0] - (m.left + m.right);
+ height = svgDimensions[1]  - (m.top + m.bottom);
+ svg.attrs({ width: svgWidth, height: svgHeight })
+}
+```
+
+The width variable is also used to place the legend so **gLegend** needs to be updated and then finally we call the **render** function to redraw everything.
+
+```
+function resize() {
+ svgDimensions = [node.clientWidth, node.clientHeight]
+ svgWidth = svgDimensions[0];
+ svgHeight = svgDimensions[1];
+ width = svgDimensions[0] - (m.left + m.right);
+ height = svgDimensions[1]  - (m.top + m.bottom);
+ svg.attrs({ width: svgWidth, height: svgHeight })
+ // LEGEND AND RENDER
+ gLegend.attr("transform", "translate(" + width + "," + m.top + ")");
+ render(data)
+}
+```
+
 
 #### Solution Code
 
 Here is the full solution code for the project thus far:
 
 [D3 - Scatterplot - Rendering Data - Solution ](https://codepen.io/jkeohan/pen/dWbmOM)
+
+#### References
+
+[update-enter-merge-exit](https://bl.ocks.org/EmbraceLife/efb531e68ce46c51cb1df2ca360348bb)
