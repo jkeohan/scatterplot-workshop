@@ -18,40 +18,35 @@ Here is the [final version](https://codepen.io/jkeohan/pen/OQwwKO?editors=0010) 
 
 Here is a list of the functionality that has been implemented:
 
-
 - Renders basic circles color coded by region
 - Legend with regional names and defined colors
 - X\Y Axes and axis titles
 - Filtering and rerendering data
 - Animations for circles, lines, opacities, axes
-- Responsive design
 
 #### Getting Started
 
-The objective of this module isn't to implement all the functionality defined above but to both structure our code in such a way that takes into consideration our final design. We will focus on the following specifically:
+The objective of this module isn't to implement all the functionality defined above but to both structure our code in such a way that takes into consideration our final design. For this module we will focus on the following specifically:
 
-- implement a responsive design
-- append an svg and g elements
+- create\append an svg and g element
 - render the data as the circles
-
 
 We are going to be writing quite of bit of code in this module and it will fall into several buckets:
 
 - code that runs only once on page load
 - code that runs on every time the data set changes
-- code that runs as per our responsive design
 
 Let's start with the code that only runs once on page load. 
 
 #### Code Run On Page Load Only
 
-Several elements are going to be defined that need to key to both support generating the svg\g elements but also for our need to scale the data to readjust according to our responsive design.  Something that you will see quite often in the code used to build out a D3 desing is defining values that we can use to position our g elements.  So let's create a new const variable and assign some values. 
+Several elements are going to be defined that need to key to both support generating the svg\g elements but also for our need to scale the data to readjust according to our responsive design.  Something that you will see quite often in the code used to build out a D3 desing is defining values that we can use to help position g elements.  So let's create a new const variable and assign some values. 
 
 ```
-const m = { left: 20, right: 150, top: 20, bottom: 20 };
+const m = { left: 20, right: 20, top: 20, bottom: 20 };
 ```
 
-The left and bottom values are so that we make space for the x\y axis text. The top is to create some distance from the parent div but the largest values of 150 is meant to provide the space needed to add the legend to the right of the scatterplot. 
+The left and bottom values are so that we make space for the x\y axis text. Most of the values will be increased as we add add the axes and legend but are suitable for the time being for a basic scatterplot. 
 
 The svg that will contain our visualization will be appended to a div with a class of ".scatterplot" so let's use d3 to grab that element from the DOM using **d3.select()**.  Once it's grabbed we will also console.log() the output. 
 
@@ -90,19 +85,14 @@ let svg = scatterplot.append("svg")
 
 Once that is done we should see an svg that is the width\height assigned to the scatterplot in css. A black border was previously added in css for the svg so that we can clearly make out it's dimensions. 
 
-Although we could create all our elements directly within the svg a much better approach is to group them using g elements.  That allow us to move whole segments of elements at once vs defining those new coordinates per element. So let's add our two supporting g elements, one for the circles and the other for the legend. 
+Although we could create all our elements directly within the svg a much better approach is to group them using g elements.  That allow us to move whole segments of elements at once vs defining those new coordinates per element. So let's add our main g element. 
 
 ```
 let width = svgWidth - (m.left + m.right);
 let height = svgHeight - (m.top + m.bottom);
 
 let gMain = svg.append("g").attr('class','gMain')
-
-let gScatter = gMain.append("g").attr('class','gScatter')
-    .attr("transform", "translate(" + m.left + "," + m.top + ")");
-
-let gLegend = gMain.append("g").attr('class','gLegend')
-    .attr("transform", "translate(" + width + "," + m.top + ")");
+	.attr("transform", "translate(" + m.left + "," + m.top + ")");
 ```
 
 Were only going to add a few more lines of code that are needed to generate and position the circles and they are both scales.
@@ -135,7 +125,7 @@ Now it's time to draw the circles.  D3 is know for it's ability to bind to data 
 
 ```
 // DATA BINDING
-let circles = gScatter.selectAll("circle").data(data);
+let circles = gMain.selectAll("circle").data(data);
 ```
 
 After data binding has been done it's time to have the circle enter using **.enter()**
@@ -179,50 +169,6 @@ const circlesUpdated = circlesEnter.merge(circles)
 	  cy: (d, i) => yScale(d["2002"]), 
     })
 ``` 
-
-#### Code For Responsiveness
-
-The last bit of code needed is to handle window resize.  This requires that we do the following:
-
-- add an event listener to the window
-- create a function that is called when the event is fired
-
-
-D3 uses the same method to select the window as it does any other dom element and then listens for when **resize** event is fired and then calls a function.
-
-```
-d3.select(window).on('resize', resize)
-```
-
-The **resize** function needs to determine the current width\height of it's parent and then update the svg and g elements with their new sizes. The **node** variable that we defined globaly plays the part of event listener as well.  It's properties are updated dynamically as the scatterplot dimensions ajdust so we will update the **svgDimensions** variable along with the  **svgWidth**, **svgHeight**, **height** and **width** variables as well.  
-
-```
-function resize() {
- svgDimensions = [node.clientWidth, node.clientHeight]
- svgWidth = svgDimensions[0];
- svgHeight = svgDimensions[1];
- width = svgDimensions[0] - (m.left + m.right);
- height = svgDimensions[1]  - (m.top + m.bottom);
- svg.attrs({ width: svgWidth, height: svgHeight })
-}
-```
-
-The width variable is also used to place the legend so **gLegend** needs to be updated and then finally we call the **render** function to redraw everything.
-
-```
-function resize() {
- svgDimensions = [node.clientWidth, node.clientHeight]
- svgWidth = svgDimensions[0];
- svgHeight = svgDimensions[1];
- width = svgDimensions[0] - (m.left + m.right);
- height = svgDimensions[1]  - (m.top + m.bottom);
- svg.attrs({ width: svgWidth, height: svgHeight })
- // LEGEND AND RENDER
- gLegend.attr("transform", "translate(" + width + "," + m.top + ")");
- render(data)
-}
-```
-
 
 #### Solution Code
 
