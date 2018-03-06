@@ -1,4 +1,4 @@
-## Rendering Data 
+## Adding Axes
 
 #### Starter Code
 
@@ -89,7 +89,7 @@ yScale.domain([-5, maxY + 10]).range([height, 0]);
 
 Here is the full solution code for the project thus far:
 
-[D3 - Scatterplot - X\Y Axes - Solution ](https://codepen.io/jkeohan/pen/EQBaPV?editors=0010)
+[D3 - Scatterplot - X\Y Axes - Solution ](https://codepen.io/jkeohan/pen/BYejOg)
 
 #### References
 
