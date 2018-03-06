@@ -174,7 +174,7 @@ const circlesUpdated = circlesEnter.merge(circles)
 
 Here is the full solution code for the project thus far:
 
-[D3 - Scatterplot - Rendering Data - Solution ](https://codepen.io/jkeohan/pen/BYeNvp?editors=0010)
+[D3 - Scatterplot - Rendering Data - Solution ](https://codepen.io/jkeohan/pen/BYeNvp)
 
 #### References
 
