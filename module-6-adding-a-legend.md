@@ -236,7 +236,7 @@ Here is the full solution for the vertical legend:
 
 Now it's time to apply the legend to the scatterplot.  We will be working with the below starter code for the scatterplot so please fork the following codepen and then we will begin: 
 
-**Starter Code:** [D3 - Scatterplot - Legend - Starter](https://codepen.io/jkeohan/pen/qxXRzB)
+**Starter Code:** [D3 - Scatterplot - Legend (Non-Interactive) - Starter](https://codepen.io/jkeohan/pen/KoPvyx)
 
 #### Making Room for the Legend
 
