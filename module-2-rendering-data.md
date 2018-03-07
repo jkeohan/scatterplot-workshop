@@ -34,7 +34,7 @@ The objective of this module isn't to implement all the functionality defined ab
 We are going to be writing quite of bit of code in this module and it will fall into several buckets:
 
 - code that runs only once on page load
-- code that runs on every time the data set changes
+- code that runs on every time the dataset changes
 
 Let's start with the code that only runs once on page load. 
 
