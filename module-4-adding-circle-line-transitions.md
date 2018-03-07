@@ -77,7 +77,7 @@ function mouseOver(d) {
 }
 ```
 
-Although the above code makes the changes it does so abruptly which isn't visually appealing.  In order to transition those properties we will use **.transition()** to indicate that the sand **.duration()**
+Although the above code makes the changes it does so abruptly which isn't visually appealing.  In order to transition those properties we will use **.transition()** to transition those property values and **.duration()** for the amount of time it should take for that transition to complete. 
 
 ```
 function mouseOver(d) {
@@ -88,6 +88,8 @@ function mouseOver(d) {
 	  .attr("r", 15);
 }
 ```
+
+The **mouseOut** function the merely reverses the previous transition. 
 
 ```
 function mouseOut() {
@@ -101,6 +103,8 @@ function mouseOut() {
 
 #### Line Transitions
 
+Since we want the lines transitions to conincide with the circles we will add two new functions to the end of the **mouseOver** function that create and transition the corresponding lines.  
+
 ```
 function mouseOver(d) {
  // previous code
@@ -110,17 +114,26 @@ function mouseOver(d) {
 } 
 ```
 
-```
-function createLineY(d) {
- const lineY = gMain.append("line");
- lineY.datum(d).attr("class", "lineY");
-}
-```
+There are at least two distinct ways to create lines which are:
+
+- append a line and assign it distinct x1,x2,y1,y2 values
+- append a path and use the d3.line() generator to create a path
+
+In our example I've opted to go with the first option which means we need to append a new line to the gMain element and bind the existing data so that we can access either the values 2002 & 2012 values. 
 
 ```
 function createLineY(d) {
- const lineY = gMain.append("line");
- lineY.datum(d).attr("class", "lineY");
+ const lineY = gMain.append("line")
+ 	.datum(d).attr("class", "lineY");
+}
+```
+
+Drawing the line requires that we first provide values for x1,x2,y1,y2. 
+
+```
+function createLineY(d) {
+ const lineY = gMain.append("line")
+ 	.datum(d).attr("class", "lineY");
  
  lineY
   .attr("x1", xScale(+lineY.datum()["2002"]))
@@ -130,10 +143,17 @@ function createLineY(d) {
 }
 ```
 
+You may have noticed that the x2 value is -5 which is directly related to how we set up the y scale:  **yScale.domain([-5, maxY + 10])**.  The -5 was meant to create distance between the x\y axis lines since some of the data points were .5.  
+
+If we examined the elements in developer tools then it would be clear that the line is there however it's not visible.  By default lines aren't assinged a stroke color so let's add a few properties to create the line in our design:
+
+- stroke : color for the line
+- stroke-width : thickness of the line
+- stroke-dasharray: line should include dashes
+
 ```
 function createLineY(d) {
- const lineY = gMain.append("line");
- lineY.datum(d).attr("class", "lineY");
+ const lineY = gMain.append("line").datum(d).attr("class", "lines");
  
  lineY
   .attr("x1", xScale(+lineY.datum()["2002"]))
@@ -145,11 +165,12 @@ function createLineY(d) {
   .attr("stroke-dasharray", "10,3")
 }
 ```
+Were still tasked with transitioning those lines which requires a small refactor to the code.  Since it's the x2,y2 values that will transition were going to set them initially to their x1,y1 equivalents. Then we will use **.transition().duration()** to make the transition to their new positions. 
+
 
 ```
 function createLineY(d) {
- const lineY = gMain.append("line");
- lineY.datum(d).attr("class", "lineY");
+ const lineY = gMain.append("line").datum(d).attr("class", "lines");
  
  lineY
   .attr("x1", xScale(+lineY.datum()["2002"] - 2 ))
@@ -170,9 +191,13 @@ function createLineY(d) {
 }
 ```
 
+A few things to note about the above is that the x1 value is set to subtract 2 from it's initial starting position.  One issue that I came across during the initial desing was that the mouseover and mouseout events might cycle without the user moving thier mouse. I attributed this to the line being drawn at the exact coords where the mouse was positioned.  So the solution I came up with was to have the line start at the end of the circle.  I also added a starting opacity as one could see the initial start of the line before it started it's transition. 
+
+As you can imagine similar code is needed to draw and transition the x line. 
+
 ```
   function createLineX(d) {
-    var lineX = gMain.append("line").datum(d)
+    var lineX = gMain.append("line").datum(d).attr("class", "lines")
     lineX
       .attr("x1", xScale(+lineX.datum()["2002"]))
       .attr("y1", yScale(+lineX.datum()["2012"] - 2 ))
@@ -191,6 +216,8 @@ function createLineY(d) {
       .attr("y2", yScale(-5));
   }
 ```
+
+The only thing left now is to transition the removal of those lines on the **mouseout** event. This is done by first selecting all the lines and transitioning the opacity first to 0 and them using **.remove()** to remove them completely. 
 
 ```
   function mouseOut() {
@@ -214,4 +241,5 @@ Here is the full solution code for the project thus far:
 #### References
 
 [Handling Events](https://github.com/d3/d3-selection/blob/master/README.md#handling-events)
+[Drawing A Straight Line](https://www.dashingd3js.com/svg-basic-shapes-and-d3js)
 [D3 Lines](https://github.com/d3/d3-shape#lines)
