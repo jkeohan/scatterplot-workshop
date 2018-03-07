@@ -4,15 +4,15 @@ The starter code for this section has been provided so please fork the following
 
 **Starter Code:** [D3 - Scatterplot - Importing Data - Starter](https://codepen.io/jkeohan/pen/RQPEox)
 
-D3's main focus is rendering charts and graphs that represent one or more data sets. Sometimes the data can be generated on the spot like using an array of numbers to render circles but most of the time D3 first needs to import,  parser and format data before it can render it in the form and shape dictated by the visualization  D3 comes with several convenience methods that support importing data such as:
+D3's main focus is rendering charts and graphs that represent one or more datasets. Sometimes the data can be generated on the spot, like using an array of numbers to render circles, but most of the time D3 first needs to import,  parser, and format data before it can render it in the form and shape dictated by the visualization.  D3 comes with several convenience methods that support importing data, such as:
 
 - d3.text, d3.csv, d3.tsv, d3.dsv, d3.json, d3.image
 
-There are quite a few more but these methods would be able to import the most commonly used formats of data sets. 
+There are quite a few more but these methods would be able to import the most commonly used formats of datasets. 
 
 #### Using D3.CSV
 
-For the purpose of the scatterplot we will initially test the d3.csv() method included in the D3V4 library to import the data and then convert it to be used with d3-fetch. 
+For the purpose of the scatterplot we will initially test the d3.csv() method, included in the D3V4 library, to import the data and then convert it to be used with d3-fetch. 
 
 ```
 d3.csv(url, (d) =>  { console.log('data is: ', d)})
@@ -21,13 +21,13 @@ d3.csv(url, (d) =>  { console.log('data is: ', d)})
 ```
 
 #### Using D3-FETCH
-Although the basic d3.csv() method is sufficient to import the csv data, D3 also comes with modules that encapsulate these types of methods and parse data on top of fetch.  Were going to use the [d3-fetch](https://github.com/d3/d3-fetch/blob/master/README.md#csv) version of d3.csv which means the module first needs to be imported.  Open the JS Settings in the CodePen and add the following url:
+Although the basic d3.csv() method is sufficient to import the csv data, D3 also comes with modules that encapsulate these types of methods and parse data on top of fetch.  We're going to use the [d3-fetch](https://github.com/d3/d3-fetch/blob/master/README.md#csv) version of d3.csv which means the module first needs to be imported.  Open the JS Settings in the CodePen and add the following url:
 
 ```
 https://d3js.org/d3-fetch.v1.min.js
 ```
 
-With the module loaded lets refactor our previous example to work with d3-fetch.
+With the module loaded, lets refactor our previous example to work with d3-fetch.
 
 ```
 d3.csv(url).then((d) => console.log('data is: ', d)) 
@@ -35,7 +35,7 @@ d3.csv(url).then((d) => console.log('data is: ', d))
 // => data is:  (42) [{…}, {…}, {…}, {…}, {…}
 ```
 
-We can see that it returns the dataset as an array of objects which is are formats that lend themselves quite nicely for organizing data.   The method also comes with a callback in .csv() which allows for data manipulation before being passed to .then().  Let's add the callback and see what it returns:
+We can see that it returns the dataset as an array of objects which are formats that lend themselves quite nicely for organizing data.   The method also comes with a callback in .csv() which allows for data manipulation before being passed to .then().  Let's add the callback and see what it returns:
 
 ```
 d3.csv(url,(d) => { console.log('first cb', d); return d})
@@ -45,7 +45,7 @@ d3.csv(url,(d) => { console.log('first cb', d); return d})
 // => second cb (42) [{…}, {…}, {…}, {…}, {…}
 ```
 
-Importaing data is one of the very first steps in building out a visualization so play with the additional formats.  With that being said let's take a look at one more method used for importing data that makes it easier to work with multiple asynchronous functions that that use callbacks.  Enter...[d3-queue](https://github.com/d3/d3-queue).
+Importing data is one of the very first steps in building out a visualization so play with the additional formats.  With that being said, let's take a look at one more method used for importing data that makes it easier to work with multiple asynchronous functions that use callbacks.  Enter...[d3-queue](https://github.com/d3/d3-queue).
 
 
 #### Using D3-QUEUE: Instructor Demo Only
@@ -73,7 +73,7 @@ d3.queue()
 
 ### Using LocalStorage 
 
-Since were going to making edits consistently throughout this project we want to limit the calls being made to github to retrieve the data.  Everytime an edit is made the codepen executes and every line of code that is called will rerun.  One simple way to limit that is to make the call successfully once and store the data in localStorage.  This lecture isn't meant to go into the details of localStorage so the following **getData** function has been provided so delete all the previous code and copy and paste the below into the codepen.
+Since we're going to be making edits consistently throughout this project, we want to limit the calls being made to github to retrieve the data.  Everytime an edit is made the codepen executes, and every line of code that is called will rerun.  One simple way to limit that, is to make the call successfully once and store the data in localStorage.  This lecture isn't meant to go into the details of localStorage so the following **getData** function has been provided. Delete all the previous code, and copy and paste the below into the codepen.
 
 ```
 getData()
@@ -90,7 +90,7 @@ function getData() {
   }
 }
 ```
-As we review the function we notice there is a render function being called however it has yet been created so let's do that.  Above the getData() function call let's create a new **render** function and console.log the data. 
+As we review the function we notice there is a render function being called, however, it has not yet been created so let's do that.  Above the getData() function call, let's create a new **render** function and console.log the data. 
 
 ```
 function render(data) {
