@@ -70,7 +70,7 @@ The output is something we've already seen in the previous iterations of the sca
 
 ### Using d3.set
 
-D3 offers a set of convenience methods for manipulating data which are available in the full d3 library or in the **d3-collection module**.  One method in particular is [d3.set](https://github.com/d3/d3-collection/blob/master/README.md#set) which is like ES6 Sets in that it creates a new object that stores unique values. 
+D3 offers a set of convenience methods for manipulating data which are available in the full d3 library or in the [d3-collection module](https://github.com/d3/d3-collection).  One method in particular is **d3.set** which is like ES6 Sets in that it creates a new object that stores unique values. 
 
 Let's use d3.set to create a new set and then filter it to remove duplicate region names as well as filter out the "World" object.   
 
@@ -264,8 +264,26 @@ function legendData(data) {
 function renderLegend(legendValues, data) {
     //...renderLegend code
 }
+```
 
-// Remember to add legendData to getData so that it's initially run on first render
+We need this to run the first time the script loads so let's configure the getData function to run legendData in both the if\else statements. 
+
+```
+  if (storage) {
+    storage = JSON.parse(storage)
+    storage.sort(function(x, y){
+        return d3.ascending(x['2002'], y['2002'] );
+       })
+    legendData(storage)
+    render(storage);
+   
+  } else {
+    d3.csv(url, function(data) { 
+     localStorage.setItem("countries", JSON.stringify(data));
+      legendData(data)
+      render(data);
+    });
+  }
 ```
 
 At this point, the legend should have been drawn with the colors conveying the relationship between the circles and their corresponding region. 
@@ -280,3 +298,7 @@ Here is the full solution code for the project thus far:
 
 - [d3-legend](http://d3-legend.susielu.com/#color-ordinal)
 - [d3noob.org](http://www.d3noob.org/2014/02/styles-in-d3js.html)
+
+### Next Lesson
+
+[Filtering Data Based On Legend Choice](https://github.com/jkeohan/scatterplot-workshop/blob/master/module-6-using-legend-to-filter-dataset.md)
