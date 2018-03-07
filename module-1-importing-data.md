@@ -8,7 +8,7 @@ D3's main focus is rendering charts and graphs that represent one or more datase
 
 - d3.text, d3.csv, d3.tsv, d3.dsv, d3.json, d3.image
 
-There are quite a few more but these methods would be able to import the most commonly used formats of datasets. 
+There are quite a few more, but these methods would be able to import the most commonly used formats of datasets. 
 
 #### Using D3.CSV
 
