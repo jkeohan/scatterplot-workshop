@@ -94,3 +94,4 @@ Here is the full solution code for the project thus far:
 #### References
 
 [placeholder for official d3 axes docs]()
+[D3 Axes](https://github.com/pshrmn/notes/blob/master/d3/axes.md)
