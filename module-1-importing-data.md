@@ -35,7 +35,7 @@ d3.csv(url).then((d) => console.log('data is: ', d))
 // => data is:  (42) [{…}, {…}, {…}, {…}, {…}
 ```
 
-We can see that it returns the in the dataset as an array of objects which is are formats that lend themselves quite nicely for organizing data.   The method also comes with a callback in .csv() which allows for data manipulation before being passed to .then().  Let's add the callback and see what it returns:
+We can see that it returns the dataset as an array of objects which is are formats that lend themselves quite nicely for organizing data.   The method also comes with a callback in .csv() which allows for data manipulation before being passed to .then().  Let's add the callback and see what it returns:
 
 ```
 d3.csv(url,(d) => { console.log('first cb', d); return d})
