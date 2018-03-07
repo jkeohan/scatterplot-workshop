@@ -292,7 +292,7 @@ At this point, the legend should have been drawn with the colors conveying the r
 
 Here is the full solution code for the project thus far:
 
-[D3 - Scatterplot - Legend (Non-Interactive) - Solution ](https://codepen.io/jkeohan/pen/wyyRJa?editors=0010)
+[D3 - Scatterplot - Legend (Non-Interactive) - Solution ](https://codepen.io/jkeohan/pen/dmbvBW?editors=0010)
 
 ### Additional Legend Resources
 
