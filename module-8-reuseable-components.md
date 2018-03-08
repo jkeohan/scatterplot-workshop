@@ -103,7 +103,7 @@ I'm sure by now you've come to the conclusion that it's much easier to incorpora
 
 Here is the starter code for the vertical legend using d3-legend:
 
-[D3 - Reusable Legend - Starter](https://codepen.io/jkeohan/pen/EQeaMg?editors=0010)
+[D3 - Custom Reusable Legend - Starter](https://codepen.io/jkeohan/pen/EQeaMg?editors=0010)
 
 #### Additional Resources
 
