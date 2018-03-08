@@ -139,7 +139,7 @@ Now we need to retrieve their current cx\cy values and then transition them to t
 
 Here is the full solution code for the project thus far:
 
-[D3 - Scatterplot - Legend (Interactive I) - Solution](https://codepen.io/jkeohan/pen/KQRKGj?editors=0010)
+[D3 - Scatterplot - Legend (Interactive I) - Solution](https://codepen.io/jkeohan/pen/YaKxLN)
 
 ### Extending Filtering To Mouseover\Mouseout Events
 
