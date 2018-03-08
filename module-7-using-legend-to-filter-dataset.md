@@ -248,4 +248,4 @@ This code for this function is almost identical to legendMouseOver however it re
 
 Here is the full solution code for the project thus far:
 
-[D3 - Scatterplot - Legend (Interactive) - Legend Opacity - Solution ](https://codepen.io/jkeohan/pen/OQwwKO?editors=0010)
+[D3 - Scatterplot - Legend (Interactive II) - Solution](https://codepen.io/jkeohan/pen/XEreNd)
