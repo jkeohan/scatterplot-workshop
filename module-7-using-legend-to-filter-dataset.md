@@ -147,7 +147,7 @@ Here is the full solution code for the project thus far:
 
 Here is the starter code:
 
-[D3 - Scatterplot - Legend (Interactive II) - Solution](https://codepen.io/jkeohan/pen/ZxEexm)
+[D3 - Scatterplot - Legend (Interactive II) - Starter](https://codepen.io/jkeohan/pen/ZxEexm)
 
 One addition we can add to the legend to enhance the user experience is to allow them to temporarily lower the opacity of the other data points which would highlight the ones chosen. 
 
