@@ -252,9 +252,9 @@ Now we reset the chart width by increasing the right margin:
 const m = { left: 80, right: 150, top: 20, bottom: 70 };
 ```
 
-#### Adding Supporting Functions
+#### Adding\Editing Supporting Functions
 
-Since the functions needed to generate a legend have already been created, all we need to do now is copy/paste them below the render function and then call the **legendData** function inside the **getData** function.
+Since the functions needed to generate a legend have already been created, all we need to do now is copy/paste them below the render function, make a few minor edits and then call the **legendData** function inside the **getData** function.
 
 ```
 // DISPLAY LEGEND
@@ -266,7 +266,26 @@ function renderLegend(legendValues, data) {
 }
 ```
 
-We need this to run the first time the script loads so let's configure the getData function to run legendData in both the if\else statements. 
+The small edits that need to be made are:
+
+- append the legend to gMain instead of svg 
+- move it into position using translate(transform)
+
+```
+ // UPDATE svg to gMain
+ let legend = gMain.append("g").attr("class","legend");
+
+ // MOVE IT INTO POSITION
+ let legend = gMain.append("g").attr("class","legend")
+     .attr("transform", () => {
+        return "translate(" + width + "," + 0 + ")";
+       });
+  
+```
+
+#### Calling The Functions
+
+We need this to run **legendData** the first time the script loads so let's configure the **getData** function to make that call in the if\else statement. 
 
 ```
   if (storage) {

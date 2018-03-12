@@ -12,9 +12,9 @@ In this module we will cover the basics of using several D3 convenience methods 
 
 In this module we will use D3 to create basic shapes manually and then work with the d3-shape module to implement additional shapes as well.  
 
-#### Module 3: [Adding Axes](module-3-adding-axes.md)
-#### Module 4: [Adding Circle & Line Transitions](module-4-adding-circle-line-transitions.md)
-#### Module 5: [Adding A Tooltip](module-5-adding-a-tooltip.md) 
+#### Module 3: [Adding Axes](module-3-adding-axes.md) - 30min 
+#### Module 4: [Adding Circle & Line Transitions](module-4-adding-circle-line-transitions.md) - 60min
+#### Module 5: [Adding A Tooltip](module-5-adding-a-tooltip.md) - 30min
 #### Module 6: [Adding A Legend](module-6-adding-a-legend.md)
 #### Module 7: [Using Leged To Filter Dataset](module-7-using-legend-to-filter-dataset.md)
 #### Module 8: [Reusable Components](module-8-reuseable-components.md)
