@@ -287,6 +287,9 @@ The small edits that need to be made are:
 
 We need this to run **legendData** the first time the script loads so let's configure the **getData** function to make that call in the if\else statement. 
 
+We need this to run the first time the script loads so let's configure the getData function to run legendData in the if\else statement. 
+
+
 ```
   if (storage) {
     storage = JSON.parse(storage)
