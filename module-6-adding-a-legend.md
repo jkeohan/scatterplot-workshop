@@ -266,7 +266,7 @@ function renderLegend(legendValues, data) {
 }
 ```
 
-We need this to run the first time the script loads so let's configure the getData function to run legendData in both the if\else statements. 
+We need this to run the first time the script loads so let's configure the getData function to run legendData in the if\else statement. 
 
 ```
   if (storage) {
