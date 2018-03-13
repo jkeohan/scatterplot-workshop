@@ -256,6 +256,8 @@ const m = { left: 80, right: 150, top: 20, bottom: 70 };
 
 Since the functions needed to generate a legend have already been created, all we need to do now is copy/paste them below the render function, make a few minor edits and then call the **legendData** function inside the **getData** function.
 
+Let's first paste the two functions just above getData and then we will make the edits.
+
 ```
 // DISPLAY LEGEND
 function legendData(data) {
@@ -280,7 +282,6 @@ The small edits that need to be made are:
      .attr("transform", () => {
         return "translate(" + width + "," + 0 + ")";
        });
-  
 ```
 
 #### Calling The Functions
