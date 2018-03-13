@@ -287,8 +287,6 @@ The small edits that need to be made are:
 
 We need this to run **legendData** the first time the script loads so let's configure the **getData** function to make that call in the if\else statement. 
 
-We need this to run the first time the script loads so let's configure the getData function to run legendData in the if\else statement. 
-
 
 ```
   if (storage) {
@@ -320,4 +318,5 @@ Here is the full solution code for the project thus far:
 
 - [d3-legend](http://d3-legend.susielu.com/#color-ordinal)
 - [d3noob.org](http://www.d3noob.org/2014/02/styles-in-d3js.html)
-- [d3 shapes](https://bl.ocks.org/feyderm/4d143591b66725aed0f1855444752fd9)
+- [d3-shapes](https://github.com/d3/d3-shape#symbolSquare)
+- [dragging d3 shapes](https://bl.ocks.org/feyderm/4d143591b66725aed0f1855444752fd9)
