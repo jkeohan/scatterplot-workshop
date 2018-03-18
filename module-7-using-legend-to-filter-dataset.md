@@ -27,7 +27,7 @@ Here is a breakdown of the steps we will perform to implement the filtering and 
 
 #### Adding onclick Event
 
-Before we add the click event let's just take a moment and create the **activeLegend** variable.  We will set it to an empty string and reassign it with the name of the region selected by the user. It will be reset to an empty string when the user clicks the same region again. 
+Before we add the click event let's just take a moment and create the **activeLegend** variable.  We will set it to an empty string and reassign it with the name of the region selected by the user.  There will however include additional logic to reset it back to an empty string if at any time the user clicks the same region immediatly after. 
 
 ```
 let activeLegend = "";
