@@ -33,7 +33,7 @@ Before we add the click event let's just take a moment and create the **activeLe
 let activeLegend = "";
 ```
 
-Now let's add an the onclick event and create the **region** variable that calls the **filterByRegio** function. The function will require the whole dataset and the current object which is represented as **d**.
+Now let's add an the onclick event and create the **region** variable that calls the **filterByRegion** function. The function will require the whole dataset and the current object which is represented as **d**.
 ```
 let legendItems = legend
  // ...PREVIOUS CODE
