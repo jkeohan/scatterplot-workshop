@@ -17,12 +17,10 @@ The user iteraction with the legend that we were looking to implement in this sc
 Here is a breakdown of the steps we will perform to implement the filtering and redrawing of the scatterplot based on the users selected region:
 
 
-- Create a new variable called **activeLegend** to keep track of which legend is currently active.
-- Add **.onclick** event to legendItems that will call a new function called **filterByRegion** and store the results in the **region** variable
-- Create the **filterByRegion** function that will return a new array of cities filtered by region
-- Create a new function called **legendTranstion** that will transition the opacity of the legend items to indicate which one is active 
-- Call the **render** function passing it the newly filtered dataset.
-- Update the **render** function to transition the circles from their current to their new position. 
+- Create a new variable called **activeLegend** to keep track of the active legend.
+- Add **.onclick** event to each legend item that passes the legend choice to  a new the **filterByRegion** function which will return a new array of cities filtered by region.
+- Create a new function called **legendTranstion** that will add some transition to the legends and provide a visual indication as to which region is active.
+- Call and update the **render** function with the filtered dataset and transition the circles from their current to their new position. 
 
 
 #### Adding onclick Event
@@ -33,7 +31,7 @@ Before we add the click event let's just take a moment and create the **activeLe
 let activeLegend = "";
 ```
 
-Now let's add an the onclick event and create the **region** variable that calls the **filterByRegion** function. The function will require the whole dataset and the current object which is represented as **d**.
+Now let's add an the onclick event and create the **region** variable that calls the **filterByRegion** function. The function will require the whole dataset and the currently chosen region.
 ```
 let legendItems = legend
  // ...PREVIOUS CODE
@@ -118,7 +116,7 @@ let group = svg.selectAll("circle").data(data, d => d["Location"]);
 ```
 
 
-Now we need to retrieve their current cx\cy values and then transition them to their new positions.  To do this we will rereference the group variable again which segments these items for updating and use **d3.select(this)** to reference the current items cx\cy values. Once this is done we can then transition them to their new position. 
+Now we need to retrieve their current cx\cy values and then transition them to their new positions.  To do this we will reference the group variable again and use **d3.select(this)** to reference the current item and **.attr('cx')** and **.attr('cy')** to it's existing values. Once this is done we can then transition them to their new position. 
 
 ```
   group

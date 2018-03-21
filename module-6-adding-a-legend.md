@@ -291,18 +291,14 @@ We need this to run **legendData** the first time the script loads so let's conf
 
 ```
   if (storage) {
-    storage = JSON.parse(storage)
-    storage.sort(function(x, y){
-        return d3.ascending(x['2002'], y['2002'] );
-       })
-    legendData(storage)
-    render(storage);
-   
+    data = JSON.parse(storage);
+    render(data);
+    legendData(data)
   } else {
-    d3.csv(url, function(data) { 
-     localStorage.setItem("countries", JSON.stringify(data));
-      legendData(data)
+    d3.csv(url, function(data) {
+      localStorage.setItem("countries", JSON.stringify(data));
       render(data);
+      legendData(data)
     });
   }
 ```
