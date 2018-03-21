@@ -47,7 +47,7 @@ let legendItems = legend
 Clicking on any legend items at this point will display an error in the console being that the filterByRegion function has not yet been created so let's add it as the last line of **renderLegend** function and add some pseudocode.
 
 ```
-function filterByRegion(data, region) {
+function filterByRegion(region) {
  // if activelenend is already set to the region reset it to an empty string
  // and return the whole dataset
  // else set activelegend to region and filter\return new dataset
@@ -58,7 +58,7 @@ With the steps thought out let's translate that into code:
 
 
 ```
-function filterByRegion(data, region) {
+function filterByRegion(region) {
   if (activeLegend == region) {
     activeLegend = "";
     return data;
@@ -73,7 +73,7 @@ function filterByRegion(data, region) {
 One last thing we need is to transition the legend items opacity to visually indicate to the user which region is currently active.  To do that we will add the **legendTranstion** function as the last line of **renderLegend**
 
 ```
-function filterByRegion(data, region) {
+function filterByRegion(region) {
   if (activeLegend == region) {
     activeLegend = "";
     legendTransition(region);
