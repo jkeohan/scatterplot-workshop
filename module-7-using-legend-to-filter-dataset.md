@@ -38,7 +38,7 @@ Now let's add an the onclick event and create the **region** variable that calls
 let legendItems = legend
  // ...PREVIOUS CODE
  .on("click", function(d) {
-    const region = filterByRegion(data, d);
+    const region = filterByRegion(d);
   });;
 ```
 
