@@ -114,14 +114,14 @@ As the render function is presently configured all the circles are redrawn with 
 To do this first requires one small change to how we bound the data initially. D3's default data binding is done based on position and not on the actual values inside the array, that is unless we use a callback function to tell it to do so.
 
 ```
-let group = svg.selectAll("circle").data(data, d => d["Location"]);
+let circles = gMain.selectAll("circle").data(data, d => d["Location"]);
 ```
 
 
 Now we need to retrieve their current cx\cy values and then transition them to their new positions.  To do this we will rereference the group variable again which segments these items for updating and use **d3.select(this)** to reference the current items cx\cy values. Once this is done we can then transition them to their new position. 
 
 ```
-  group
+  circleEnter
     .attr("cx", function(d, i) {
       return d3.select(this).attr("cx");
     })
