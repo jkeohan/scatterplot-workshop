@@ -36,7 +36,7 @@ Now let's add an the onclick event and create the **region** variable that calls
 let legendItems = legend
  // ...PREVIOUS CODE
  .on("click", function(d) {
-    const region = filterByRegion(data, d);
+    const region = filterByRegion(d);
   });;
 ```
 
@@ -45,7 +45,7 @@ let legendItems = legend
 Clicking on any legend items at this point will display an error in the console being that the filterByRegion function has not yet been created so let's add it as the last line of **renderLegend** function and add some pseudocode.
 
 ```
-function filterByRegion(data, region) {
+function filterByRegion(region) {
  // if activelenend is already set to the region reset it to an empty string
  // and return the whole dataset
  // else set activelegend to region and filter\return new dataset
@@ -56,7 +56,7 @@ With the steps thought out let's translate that into code:
 
 
 ```
-function filterByRegion(data, region) {
+function filterByRegion(region) {
   if (activeLegend == region) {
     activeLegend = "";
     return data;
@@ -68,10 +68,10 @@ function filterByRegion(data, region) {
 }
 ```
 
-One last thing we need is to transition the legend items opacity to visually indicate to the user which region is currently active.  To do that we will add the **legendTranstion** function as the last line of **renderLegend**
+One of our primary goals is to provide some visual indication at to which legend has been chosen.  This can be done by transitioning the opacity of non-active legend items to a low enough value to clearly show the change.  To do that we will add the **legendTranstion** function here and create it shortly. 
 
 ```
-function filterByRegion(data, region) {
+function filterByRegion(region) {
   if (activeLegend == region) {
     activeLegend = "";
     legendTransition(region);
@@ -112,25 +112,49 @@ As the render function is presently configured all the circles are redrawn with 
 To do this first requires one small change to how we bound the data initially. D3's default data binding is done based on position and not on the actual values inside the array, that is unless we use a callback function to tell it to do so.
 
 ```
-let group = svg.selectAll("circle").data(data, d => d["Location"]);
+let circles = gMain.selectAll("circle").data(data, d => d["Location"]);
 ```
 
 
-Now we need to retrieve their current cx\cy values and then transition them to their new positions.  To do this we will reference the group variable again and use **d3.select(this)** to reference the current item and **.attr('cx')** and **.attr('cy')** to it's existing values. Once this is done we can then transition them to their new position. 
+Now we need to retrieve their current cx\cy values and then transition them to their new positions.  To do this we will extend **circles.merge(circles)**  and use **d3.select(this)** to reference and set the current items **.attr('cx')** and **.attr('cy')** values to their current values before transitioning them to their newly defined coordinates. 
 
 ```
-  group
-    .attr("cx", function(d, i) {
-      return d3.select(this).attr("cx");
-    })
-    .attr("cy", function(d, i) {
-      return d3.select(this).attr("cy");
-    })
-    .transition()
-    .duration(500)
-    .attr("cx", (d, i) => xScale(d["2002"]))
-    .attr("cy", (d, i) => yScale(d["2012"]))
-    .attr("opacity", 1);
+circles.merge(circles)  
+  .attr("cx", function(d, i) {
+    return d3.select(this).attr("cx");
+  })
+  .attr("cy", function(d, i) {
+    return d3.select(this).attr("cy");
+  })
+  .transition()
+  .duration(1000)
+  .attr("cx", (d, i) => xScale(d["2002"]))
+  .attr("cy", (d, i) => yScale(d["2012"]));
+```
+
+The remaining circles that are not part of the new dataset will need to be removed.  D3 provides the **.exit()** method to stage those elements and **.remove()** to remove them. Of course the transition betwee these two states should be fluid so we'll add another **.transition().duration(500)** and reset the opacity to 0 before moments before removing them altogether.
+
+```
+circles
+  .exit()
+  .transition()
+  .duration(500)
+  .attr("opacity", 0)
+  .remove();
+```
+
+The circles aren't the only elements that are being redrawn.  You might have noticed that the axes change as well.  As always we should strive to provide smooth transitions every step of the way so let's add transitions to both axes just before .call().  
+
+```
+xAxis
+  .transition()
+  .duration(1000)
+  .call()
+    
+yAxis
+  .transition()
+  .duration(1000)
+  .call()
 ```
 
 #### CodePen Solution Code
@@ -145,7 +169,7 @@ Here is the full solution code for the project thus far:
 
 Here is the starter code:
 
-[D3 - Scatterplot - Legend (Interactive II) - Starter](https://codepen.io/jkeohan/pen/ZxEexm)
+[D3 - Scatterplot - Legend (Interactive II) - Starter](https://codepen.io/jkeohan/pen/qomrWK)
 
 One addition we can add to the legend to enhance the user experience is to allow them to temporarily lower the opacity of the other data points which would highlight the ones chosen. 
 
