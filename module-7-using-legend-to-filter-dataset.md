@@ -36,7 +36,7 @@ Now let's add an the onclick event and create the **region** variable that calls
 let legendItems = legend
  // ...PREVIOUS CODE
  .on("click", function(d) {
-    const region = filterByRegion(data, d);
+    const region = filterByRegion(d);
   });;
 ```
 
@@ -45,7 +45,7 @@ let legendItems = legend
 Clicking on any legend items at this point will display an error in the console being that the filterByRegion function has not yet been created so let's add it as the last line of **renderLegend** function and add some pseudocode.
 
 ```
-function filterByRegion(data, region) {
+function filterByRegion(region) {
  // if activelenend is already set to the region reset it to an empty string
  // and return the whole dataset
  // else set activelegend to region and filter\return new dataset
@@ -56,7 +56,7 @@ With the steps thought out let's translate that into code:
 
 
 ```
-function filterByRegion(data, region) {
+function filterByRegion(region) {
   if (activeLegend == region) {
     activeLegend = "";
     return data;
@@ -68,10 +68,10 @@ function filterByRegion(data, region) {
 }
 ```
 
-One last thing we need is to transition the legend items opacity to visually indicate to the user which region is currently active.  To do that we will add the **legendTranstion** function as the last line of **renderLegend**
+One of our primary goals is to provide some visual indication at to which legend has been chosen.  This can be done by transitioning the opacity of non-active legend items to a low enough value to clearly show the change.  To do that we will add the **legendTranstion** function here and create it shortly. 
 
 ```
-function filterByRegion(data, region) {
+function filterByRegion(region) {
   if (activeLegend == region) {
     activeLegend = "";
     legendTransition(region);
@@ -112,14 +112,14 @@ As the render function is presently configured all the circles are redrawn with 
 To do this first requires one small change to how we bound the data initially. D3's default data binding is done based on position and not on the actual values inside the array, that is unless we use a callback function to tell it to do so.
 
 ```
-let group = svg.selectAll("circle").data(data, d => d["Location"]);
+let circles = gMain.selectAll("circle").data(data, d => d["Location"]);
 ```
 
 
 Now we need to retrieve their current cx\cy values and then transition them to their new positions.  To do this we will reference the group variable again and use **d3.select(this)** to reference the current item and **.attr('cx')** and **.attr('cy')** to it's existing values. Once this is done we can then transition them to their new position. 
 
 ```
-  group
+    circles.merge(circles)  
     .attr("cx", function(d, i) {
       return d3.select(this).attr("cx");
     })
@@ -127,10 +127,9 @@ Now we need to retrieve their current cx\cy values and then transition them to t
       return d3.select(this).attr("cy");
     })
     .transition()
-    .duration(500)
+    .duration(1000)
     .attr("cx", (d, i) => xScale(d["2002"]))
-    .attr("cy", (d, i) => yScale(d["2012"]))
-    .attr("opacity", 1);
+    .attr("cy", (d, i) => yScale(d["2012"]));
 ```
 
 #### CodePen Solution Code
