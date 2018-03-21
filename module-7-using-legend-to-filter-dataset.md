@@ -70,7 +70,7 @@ function filterByRegion(region) {
 }
 ```
 
-One last thing we need is to transition the legend items opacity to visually indicate to the user which region is currently active.  To do that we will add the **legendTranstion** function as the last line of **renderLegend**
+One of our primary goals is to provide some visual indication at to which legend has been chosen.  This can be done by transitioning the opacity of non-active legend items to a low enough value to clearly show the change.  To do that we will add the **legendTranstion** function here and create it shortly. 
 
 ```
 function filterByRegion(region) {
