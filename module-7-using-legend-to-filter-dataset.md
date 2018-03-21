@@ -176,11 +176,11 @@ One addition we can add to the legend to enhance the user experience is to allow
 Here are the steps needed to implement this design:
 
 - add **mouseover** and **mouseout** events to the legend items that call thier supporting functions.
-- create the **legendMouseOver** and **legendMouseOut** functions
+- create the corresponding **legendMouseOver** and **legendMouseOut** functions.
 
 #### Adding The Mouseover and Mouseout Events
 
-Adding the on click events is done exactly as before but this time we define the event type as mouseover and mouseout. 
+Adding the on click events is done exactly as it was before however the event type is now mouseover and mouseout. 
 
 ```
   let legendItems = legend
@@ -195,13 +195,13 @@ Adding the on click events is done exactly as before but this time we define the
 
 #### Creating The legendMouseOver Function
 
-Now it's time to create the legendMouseOver function which will do the following:
+The legendMouseOver function will do the following:
 
 - check to see if scatterplot has already been filtered and if so end the function immediately
-- select all the non-hovered legend items and change thier opacity to .3 
+- select all the non-hovered legend items and change thier opacity to .3
 - select all the circles and change thier opacity to .1 except for the ones related to that region 
 
-Let's create the function and get things started by having it first evaluate if it should continue executing or stop. 
+The function will first need evaluate the activeLegend variable and determine if if it should continue executing or stop. 
 
 ```
 function legendMouseOver(region){
@@ -209,48 +209,25 @@ function legendMouseOver(region){
 }
 ```
   
-If that's not the case then it needs to reset the opacities of both the legends and circles.  In order to do that we will select and store them in their corresponding variables.
+Once it's made the decision to continue it then needs to reset the opacities of the legend items and circles.  In order to do that we first need to select and store them in their corresponding variables.
 
 ```
 function legendMouseOver(region){
   if(activeLegend) return
-  let legends = d3.selectAll(".legendItem");
+  let legendItems = d3.selectAll(".legendItem");
   let circles = d3.selectAll('circle')
 }
 ```
 
-The only remaining step for the function to perform is to change the opacities. 
+All that's left to do is add transitions and make the necessary changes to their opacities. 
 
 ```
-legends.transition().duration(500).attr('opacity',(d) => {
-    return d === region ? 1 : 0.3
-})
+legendItems.transition().duration(500)
+  .attr('opacity', d => d == region ? 1 : 0.3)
+    
 circles.transition().duration(500)
-  .attr('opacity',function(d) {
-    return d["Region"] == region ? 1 : 0.1
-}) 
+  .attr('opacity', d => d['Region'] == region ? 1 : 0.1)
 ```
-
-Here is the entire legendMouseOut function:
-
-<details>
-<summary>legendMouseOut</summary>
-
-```
-function legendMouseOver(region){
-  if(activeLegend) return
-  let legends = d3.selectAll(".legendItem");
-  let circles = d3.selectAll('circle');
-  legends.transition().duration(500).attr('opacity',(d) => {
-      return d === region ? 1 : 0.3;
-  });
-  circles.transition().duration(500)
-    .attr('opacity',function(d) {
-      return d["Region"] == region ? 1 : 0.1;
-  });  
-}
-```
-</details>
 
 #### Creating The legendMouseOut Function
 
@@ -258,10 +235,10 @@ This code for this function is almost identical to legendMouseOver however it re
 
 ```
   function legendMouseOut(region) {
-    if (filtered) return;
-    let legends = d3.selectAll(".legendItem");
+    if(activeLegend) return;
+    let legendItems = d3.selectAll(".legendItem");
     let circles = d3.selectAll("circle");
-    legends.transition().duration(500).attr("opacity", 1);
+    legendItems.transition().duration(500).attr("opacity", 1);
     circles.transition().duration(500).attr("opacity", 1);
   }
 ```
