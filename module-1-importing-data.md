@@ -24,7 +24,7 @@ d3.csv(url, (d) =>  { console.log('data is: ', d)})
 
 **Note:** d3.request has been replaced with d3.fetch in D3 5.0
 
-Although the basic d3.csv() method is sufficient to import the csv data, D3 also comes with modules that encapsulate these types of methods and parse data on top of fetch.  We're going to use the [d3-fetch](https://github.com/d3/d3-fetch/blob/master/README.md#csv) version of d3.csv which means the module first needs to be imported.  Open the JS Settings in the CodePen and add the following url:
+Although the basic d3.csv() method is sufficient to import the csv data, D3 also comes with modules that encapsulate these types of methods and parse data on top of [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).  We're going to use the [d3-fetch](https://github.com/d3/d3-fetch/blob/master/README.md#csv) version of d3.csv which means the module first needs to be imported.  Open the JS Settings in the CodePen and add the following url:
 
 ```
 https://d3js.org/d3-fetch.v1.min.js
