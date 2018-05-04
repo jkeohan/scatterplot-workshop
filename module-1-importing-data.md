@@ -21,7 +21,12 @@ d3.csv(url, (d) =>  { console.log('data is: ', d)})
 ```
 
 #### Using D3-FETCH
-Although the basic d3.csv() method is sufficient to import the csv data, D3 also comes with modules that encapsulate these types of methods and parse data on top of fetch.  We're going to use the [d3-fetch](https://github.com/d3/d3-fetch/blob/master/README.md#csv) version of d3.csv which means the module first needs to be imported.  Open the JS Settings in the CodePen and add the following url:
+
+**Note:** d3.request has been replaced with d3.fetch in D3 5.0
+
+Although the basic d3.csv() method is sufficient to import the csv data, D3 also comes with additional modules such as [d3-fetch](https://github.com/d3/d3-fetch/blob/master/README.md#csv) which runs on top of [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).  Once the module is imported it extends the functionality of the previous convenience methods by providing .then().  
+
+Open the JS Settings in the CodePen and add the following url:
 
 ```
 https://d3js.org/d3-fetch.v1.min.js
@@ -49,6 +54,9 @@ Importing data is one of the very first steps in building out a visualization so
 
 
 #### Using D3-QUEUE: Instructor Demo Only
+
+**Note:** d3-queue is deprecated in D3v5
+
 The instructor will demo this d3-queue module but will not use it in this project.  It's only meant to demonstrate the functionality. 
 
 This d3-queue module is also a separate library and so the JS setting of the codepen must be edited once again. 
@@ -109,6 +117,7 @@ Here is the full solution code for the project thus far:
 
 #### Additional Resources
 
+- [Changes to D3v5](https://github.com/d3/d3/blob/master/CHANGES.md#changes-in-d3-50)
 - [d3-fetch]()
 - [d3-queue]()
 - [d3-queue-mental-model](https://macwright.org/2016/12/09/a-d3-queue-mental-model.html)
