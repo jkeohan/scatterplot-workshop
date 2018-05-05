@@ -14,3 +14,5 @@
 
 - [dexjs](http://dexjs.net/)
 - [c3](http://c3js.org/)
+- [nvd3](http://nvd3.org/examples/scatter.html)
+- [semiotic](https://emeeks.github.io/semiotic/#/)
