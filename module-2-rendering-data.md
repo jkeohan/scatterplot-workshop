@@ -95,7 +95,7 @@ let gMain = svg.append("g").attr('class','gMain')
 	.attr("transform", "translate(" + m.left + "," + m.top + ")");
 ```
 
-We're only going to add a few more lines of code that are needed to generate and position the circles, and they are all scales.
+We're only going to add a few more lines of code that are needed to add color and position the circles, and they are all scales.
 
 ```
 let colorScale = d3.scaleOrdinal(d3.schemeCategory10);
