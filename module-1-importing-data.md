@@ -4,7 +4,7 @@ The starter code for this section has been provided so please fork the following
 
 **Starter Code:** [D3 - Scatterplot - Importing Data - Starter](https://codepen.io/jkeohan/pen/RQPEox)
 
-D3's main focus is rendering charts and graphs that represent one or more datasets. Sometimes the data can be generated on the spot, like using an array of numbers to render circles, but most of the time D3 first needs to import,  parser, and format data before it can render it in the form and shape dictated by the visualization.  D3 comes with several[convenience methods](https://github.com/d3/d3-fetch) that run on top of the Fetch API and support importing the following data types:
+D3's main focus is rendering charts and graphs that represent one or more datasets. Sometimes the data can be generated on the spot, like using an array of numbers to render circles, but most of the time D3 first needs to import,  parser, and format data before it can render it in the form and shape dictated by the visualization.  D3 comes with several [convenience methods](https://github.com/d3/d3-fetch) that run on top of the Fetch API and support importing the following data types:
 
 - d3.text, d3.csv, d3.tsv, d3.dsv, d3.json, d3.image
 
