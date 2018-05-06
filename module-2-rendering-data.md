@@ -16,11 +16,9 @@ Although building out a basic scatterplot is pretty straighforward using D3, the
 
 Here is the [final version](https://codepen.io/jkeohan/pen/OQwwKO?editors=0010) of the scatterplot, so let's take a moment to first examine it and then come up with a list of functionality that we will need to build out. 
 
-Here is a list of the functionality that has been implemented:
-
 - Renders basic circles color coded by region
-- Legend with regional names and defined colors
 - X/Y Axes and axis titles
+- Legend with regional names and defined colors
 - Filtering and rerendering data
 - Animations for circles, lines, opacities, axes
 
