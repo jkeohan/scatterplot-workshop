@@ -87,7 +87,7 @@ Since we're going to be making edits consistently throughout this project, we wa
 getData()
 function getData() {
   let url = "https://gist.githubusercontent.com/jkeohan/974c071a5d4d0185a846/raw/971a9b8dfc0ebe238ee271611991cd98e6cac434/data_regions.csv";
-  let data = localStorage.getItem("countries4");
+  let data = localStorage.getItem("countries");
   if (data) {
     render(data);
   } else {
