@@ -8,20 +8,20 @@ The starter code for this section has been provided so please fork the following
 
 #### Intro
 
-It is my opinion that transitions are a key factor in capturing the viewer and directing their attention. 
+It is my opinion, that transitions are a key factor in capturing the viewer and directing their attention. 
 
 #### Getting Started
 
 Let's take a look at the solution and use it to help define what we think needs to be done. 
 
-- mouseover\mouseout events
-- circle stroke and\or radius increase\decrease
+- mouseover/mouseout events
+- circle stroke and/or radius increase/decrease
 - lines are drawn and then removed
 
 
-#### Adding Mouseover\Mouseout Events
+#### Adding Mouseover/Mouseout Events
 
-Events occur all the time as a user interacts with a web site, application or data visualization.   D3 can leverage any DOM event type supported by your browser.  All that required is attaching an event listener to the selection and providing instructions for what to do once that event is triggered.  To do that we use the **.on()** method and assign it to the entering circles. 
+Events occur all the time as a user interacts with a web site, application, or data visualization.  D3 can leverage any DOM event type supported by your browser.  All that's required is attaching an event listener to the selection and providing instructions for what to do once that event is triggered.  To do that, we use the **.on()** method and assign it to the entering circles. 
 
 ```
 circlesEnter
@@ -29,7 +29,7 @@ circlesEnter
  .on("mouseout", mouseOut);
 ```
 
-In the above example we've also assigned corresponding functions to the events so we need to create them as well.  
+In the above example we've also assigned corresponding functions to the events, so we need to create them as well.  
 
 ```
 function mouseOver(d) {}
@@ -37,11 +37,11 @@ function mouseOver(d) {}
 function mouseOout(d) {}
 ```
 
-Although the actual function assigned within the event listener doesn't appear to have been passed any parameters it is indeed being passed one directly as well as two additional ones indirectly. 
+Although the actual callback function within the event listener isn't passed any arguments directly, it is indeed being passed the following:
 
-- d : this is the data assigned to the 
-- this : current element
-- event : the event that occured and it's properties
+- d: the element itself 
+- this: the current context
+- event: the event object
 
 Let's console them all and see what they return. 
 
@@ -60,7 +60,7 @@ function mouseOver(d) {
 
 #### Circle Transitions
 
-Since **this** represents the element that triggered the event we can use **d3.select(this)** to grab it and transition it's properties. The properties were looking to alter are:
+Since **this** represents the element that triggered the event, we can use **d3.select(this)** to grab it and transition its properties.  The properties we're looking to alter are:
 
 - stroke-width 
 - stroke
@@ -77,7 +77,7 @@ function mouseOver(d) {
 }
 ```
 
-Although the above code makes the changes it does so abruptly which isn't visually appealing.  In order to transition those properties we will use **.transition()** to transition those property values and **.duration()** for the amount of time it should take for that transition to complete. 
+Although the above code makes the changes, it does so abruptly which isn't visually appealing.  In order to transition those properties we will use **.transition()** to transition those property values and **.duration()** for the amount of time it should take for that transition to complete. 
 
 ```
 function mouseOver(d) {
@@ -89,7 +89,7 @@ function mouseOver(d) {
 }
 ```
 
-The **mouseOut** function the merely reverses the previous transition. 
+The **mouseOut** function merely reverses the previous transition. 
 
 ```
 function mouseOut() {
@@ -103,7 +103,7 @@ function mouseOut() {
 
 #### Line Transitions
 
-Since we want the lines transitions to conincide with the circles we will add two new functions to the end of the **mouseOver** function that create and transition the corresponding lines.  
+Since we want the lines transitions to coincide with the circles, we will add two new functions to the end of the **mouseOver** function, that will create and transition the corresponding lines.  
 
 ```
 function mouseOver(d) {
@@ -119,7 +119,7 @@ There are at least two distinct ways to create lines which are:
 - append a line and assign it distinct x1,x2,y1,y2 values
 - append a path and use the d3.line() generator to create a path
 
-In our example I've opted to go with the first option which means we need to append a new line to the gMain element and bind the existing data so that we can access either the values 2002 & 2012 values. 
+In our example, I've opted to go with the first option which means we need to append a new line to the gMain element and bind the existing data so that we can access the values 2002 & 2012. 
 
 ```
 function createLineY(d) {
@@ -143,12 +143,12 @@ function createLineY(d) {
 }
 ```
 
-You may have noticed that the x2 value is -5 which is directly related to how we set up the y scale:  **yScale.domain([-5, maxY + 10])**.  The -5 was meant to create distance between the x\y axis lines since some of the data points were .5.  
+You may have noticed that the x2 value is -5 which is directly related to how we set up the y scale:  **yScale.domain([-5, maxY + 10])**.  The -5 was meant to create distance between the x/y axis lines since some of the data points were .5.  
 
-If we examined the elements in developer tools then it would be clear that the line is there however it's not visible.  By default lines aren't assinged a stroke color so let's add a few properties to create the line in our design:
+If we examined the elements in developer tools then it would be clear that the line is there, however, it's not visible.  By default, lines aren't assinged a stroke color so let's add a few properties to create the line in our design:
 
-- stroke : color for the line
-- stroke-width : thickness of the line
+- stroke: color for the line
+- stroke-width: thickness of the line
 - stroke-dasharray: line should include dashes
 
 ```
@@ -165,7 +165,7 @@ function createLineY(d) {
   .attr("stroke-dasharray", "10,3")
 }
 ```
-Were still tasked with transitioning those lines which requires a small refactor to the code.  Since it's the x2,y2 values that will transition were going to set them initially to their x1,y1 equivalents. Then we will use **.transition().duration()** to make the transition to their new positions. 
+We're still tasked with transitioning those lines which requires a small refactor to the code.  Since it's the x2,y2 values that will transition, we're going to set them initially to their x1,y1 equivalents. Then we will use **.transition().duration()** to make the transition to their new positions. 
 
 
 ```
@@ -191,9 +191,9 @@ function createLineY(d) {
 }
 ```
 
-A few things to note about the above is that the x1 value is set to subtract 2 from it's initial starting position.  One issue that I came across during the initial desing was that the mouseover and mouseout events might cycle without the user moving thier mouse. I attributed this to the line being drawn at the exact coords where the mouse was positioned.  So the solution I came up with was to have the line start at the end of the circle.  I also added a starting opacity as one could see the initial start of the line before it started it's transition. 
+A few things to note about the above is that the x1 value is set to subtract 2 from its initial starting position.  One issue that I came across during the initial design, was that the **mouseover** and **mouseout** events might cycle without the user moving their mouse. I attributed this to the line being drawn at the exact coords where the mouse was positioned.  So the solution I came up with was to have the line start at the end of the circle.  I also added a starting opacity as one could see the initial start of the line before it started its transition. 
 
-As you can imagine similar code is needed to draw and transition the x line. 
+As you can imagine, a similar code is needed to draw and transition the x line. 
 
 ```
   function createLineX(d) {
@@ -217,7 +217,7 @@ As you can imagine similar code is needed to draw and transition the x line.
   }
 ```
 
-The only thing left now is to transition the removal of those lines on the **mouseout** event. This is done by first selecting all the lines and transitioning the opacity first to 0 and them using **.remove()** to remove them completely. 
+The only thing left now is to transition the removal of those lines on the **mouseout** event. This is done by first selecting all the lines and transitioning the opacity first to 0 and then using **.remove()** to remove them completely. 
 
 ```
   function mouseOut() {
