@@ -14,7 +14,7 @@ The most important feature of D3 is most notably its ability to represent data i
 
 Although building out a basic scatterplot is pretty straighforward using D3, there are things we should consider that will affect how we structure the code for both this design and for future reusability. Let's make sure we first understand the full functionality of our visualization before we start adding additional lines of code. 
 
-Here is the [final version](https://codepen.io/jkeohan/pen/OQwwKO?editors=0010) of the scatterplot, so let's take a moment to first examine it and then come up with a list of functionality that we will need to build out. 
+Here is the [final version](https://codepen.io/jkeohan/pen/XEreNd) of the scatterplot, so let's take a moment to first examine it and then come up with a list of functionality that we will need to build out. 
 
 - Renders basic circles color coded by region
 - X/Y Axes and axis titles
