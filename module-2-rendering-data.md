@@ -36,7 +36,7 @@ We are going to be writing quite of bit of code in this module and it will fall 
 
 Let's start with the code that only runs once on page load. 
 
-#### Code Run On Page Load Only
+#### Run Code On Page Load
 
 Several elements are going to be defined that need to key to both, support generating the svg\g elements, but also for our need to scale the data to readjust according to our responsive design.  Something that you will see quite often in the code used to build out a D3 design, is defining values that we can use to help position g elements.  So let's create a new const variable and assign some values. 
 
