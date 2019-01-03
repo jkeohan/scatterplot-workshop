@@ -138,8 +138,8 @@ However, circles in an svg require a cx,cy, and r values to be drawn, so let's a
 ```
 const circlesEnter = circles.enter().append("circle")
 	.attrs({
-	  cx: (d, i) => xScale(d["2012"]),
-	  cy: (d, i) => yScale(d["2002"]), 
+	  cx: d => xScale(d["2002"]),
+	  cy: d => yScale(d["2012"]), 
 	  r:5
 	 })
 ```
@@ -149,12 +149,12 @@ Although the circles are drawn, there is no way to distinguish which circles are
 ```
 const circlesEnter = circles.enter().append("circle")
 	.attrs({
-	  cx: (d, i) => xScale(d["2012"]),
-	  cy: (d, i) => yScale(d["2002"]), 
+	  cx: d => xScale(d["2002"]),
+	  cy: d => yScale(d["2012"]), 
 	  r:5,
      'stroke-width':1, 
       stroke: 'rgba(230,230,230, .8)',
-      'fill': d => colorScale(d.Region)
+      fill: d => colorScale(d.Region)
     })
 ```
 
@@ -163,8 +163,8 @@ Eventhough we're not presently filtering the dataset we are going to handle upda
 ```
 const circlesUpdated = circlesEnter.merge(circles)
 	.attrs({
-	  cx: (d, i) => xScale(d["2012"]),
-	  cy: (d, i) => yScale(d["2002"]), 
+	  cx: d => xScale(d["2002"]),
+	  cy: d => yScale(d["2012"]), 
     })
 ``` 
 
