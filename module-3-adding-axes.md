@@ -31,7 +31,7 @@ const m = { left: 80, right: 20, top: 20, bottom: 70 };
   );
 ```
 
-D3 provides some [additional methods]() to format the styling and output of the axes.   Were going to use use the following:
+D3 provides some [additional methods]('https://github.com/d3/d3-axis') to format the styling and output of the axes.   Were going to use use the following:
 
 - tickFormat() : 
 - tickPadding() : 
